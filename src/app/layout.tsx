@@ -26,11 +26,20 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased scroll-smooth`}>
       <body className="min-h-full flex flex-col font-sans bg-white text-[#1D1D1F]">
-        <Header />
-        <main className="flex-grow pt-20">
+        {/* Added print:hidden to hide Header during printing */}
+        <div className="print:hidden">
+          <Header />
+        </div>
+        
+        {/* Added print:pt-0 to remove top padding during printing */}
+        <main className="flex-grow pt-20 print:pt-0">
           {children}
         </main>
-        <Footer />
+        
+        {/* Added print:hidden to hide Footer during printing */}
+        <div className="print:hidden">
+          <Footer />
+        </div>
       </body>
     </html>
   );
