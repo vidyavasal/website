@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import AdminSidebar from "@/components/admin/AdminSidebar";
 
 export const metadata: Metadata = {
-  title: "IODE Admin",
+  title: "Vidyavasal Admin",
   robots: { index: false, follow: false },
 };
 

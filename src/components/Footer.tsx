@@ -40,7 +40,7 @@ export default function Footer() {
             <Link href="/">
               <Image
                 src="/logo.png"
-                alt="IODE — Learn Anywhere. Grow Everywhere."
+                alt="Vidyavasal — Learn Anywhere. Grow Everywhere."
                 width={320}
                 height={165}
                 className="h-[88px] w-auto object-contain"
@@ -111,7 +111,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-[#E5E5EA] flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[#AEAEB2]">
-          <p>&copy; {currentYear} Institute of Distance Education (IODE). All rights reserved.</p>
+          <p>&copy; {currentYear} Vidyavasal. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <Link href="/privacy-policy" className="hover:text-[#007AFF] transition-colors">Privacy Policy</Link>
             <span className="text-[#E5E5EA]">|</span>

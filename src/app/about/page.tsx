@@ -4,16 +4,16 @@ import { StatCounter } from "@/components/StatCounter";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "About IODE — Kerala's Leading Education Consultancy",
+  title: "About Vidyavasal — Kerala's Leading Education Consultancy",
   description:
-    "Learn about Institute of Distance Education (IODE) — our mission to connect 5,000+ students with top UGC-recognized universities across India since 2016.",
+    "Learn about Vidyavasal — our mission to connect 5,000+ students with top UGC-recognized universities across India since 2016.",
 };
 
 const milestones = [
   {
     year: "2016",
     title: "Founded in Kerala",
-    desc: "IODE was established to bridge the gap in accessible, quality education for students and professionals.",
+    desc: "Vidyavasal was established to bridge the gap in accessible, quality education for students and professionals.",
     emoji: "🌱",
     color: "#4F46E5",
   },
@@ -142,7 +142,7 @@ export default function AboutPage() {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              About IODE
+              About Vidyavasal
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1D1D1F] mt-3 mb-6 leading-tight">
               Empowering futures through
@@ -150,7 +150,7 @@ export default function AboutPage() {
               <span className="gradient-text-vivid">quality education</span>
             </h1>
             <p className="text-lg text-[#6E6E73] max-w-2xl mx-auto leading-relaxed">
-              Institute of Distance Education (IODE) is Kerala&apos;s leading admission and
+              Vidyavasal is Kerala&apos;s leading admission and
               education consultancy, connecting students with the best universities and
               programs across India since 2016.
             </p>
@@ -436,7 +436,7 @@ export default function AboutPage() {
               <div className="relative z-10">
                 <p className="text-4xl mb-4">🎓</p>
                 <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  Join the IODE Family
+                  Join the Vidyavasal Family
                 </h2>
                 <p className="text-white/60 mb-8 max-w-lg mx-auto">
                   Be one of 5,000+ students who found their perfect university with us. Free consultation — no obligation.

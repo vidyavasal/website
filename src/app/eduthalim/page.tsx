@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Eduthalim Degree",
-  description: "Complete your 10th, 12th, or Degree with Eduthalim programs at IODE. Affordable, flexible, and UGC-recognized programs for students across Kerala.",
+  description: "Complete your 10th, 12th, or Degree with Eduthalim programs at Vidyavasal. Affordable, flexible, and UGC-recognized programs for students across Kerala.",
 };
 
 const programs = [
@@ -28,7 +28,7 @@ const programs = [
   {
     title: 'Degree Programs',
     subtitle: 'UG / Bachelor\'s',
-    desc: 'Earn your BA, B.Com, BBA, or BCA through distance mode from UGC-recognized universities with full IODE support.',
+    desc: 'Earn your BA, B.Com, BBA, or BCA through distance mode from UGC-recognized universities with full Vidyavasal support.',
     features: ['BA, B.Com, BBA, BCA', 'UGC Recognized', 'Distance / Online modes', 'Placement support'],
     color: '#7B61FF',
     grad: 'from-[#7B61FF] to-[#007AFF]',

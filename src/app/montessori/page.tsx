@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Montessori Counseling & Training",
-  description: "Build a rewarding career in early childhood education with IODE's Montessori TTC programs. Recognized training for aspiring Montessori teachers.",
+  description: "Build a rewarding career in early childhood education with Vidyavasal's Montessori TTC programs. Recognized training for aspiring Montessori teachers.",
 };
 
 const modules = [
@@ -65,7 +65,7 @@ export default function MontessoriPage() {
             &amp; <span className="gradient-text-purple">Teacher Training</span>
           </h1>
           <p className="text-lg md:text-xl text-[#6E6E73] mb-8 leading-relaxed max-w-2xl mx-auto">
-            Shape the future by nurturing young minds. Become a certified Montessori educator with IODE&apos;s comprehensive training and counseling programs.
+            Shape the future by nurturing young minds. Become a certified Montessori educator with Vidyavasal&apos;s comprehensive training and counseling programs.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/contact" className="px-8 py-4 rounded-full bg-gradient-to-r from-[#34C759] to-[#00A844] text-white font-bold text-base shadow-lg shadow-[#34C759]/20 btn-press flex items-center justify-center gap-2">
@@ -197,7 +197,7 @@ export default function MontessoriPage() {
             <div className="relative z-10">
               <div className="text-4xl mb-4">🎓</div>
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Begin your Montessori journey</h2>
-              <p className="text-white/80 mb-8">Join 500+ certified Montessori educators who started their journey with IODE. Free consultation available.</p>
+              <p className="text-white/80 mb-8">Join 500+ certified Montessori educators who started their journey with Vidyavasal. Free consultation available.</p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link href="/contact" className="px-8 py-4 rounded-full bg-white text-[#00A844] font-bold hover:bg-green-50 transition-colors btn-press flex items-center justify-center gap-2">
                   Enroll Now

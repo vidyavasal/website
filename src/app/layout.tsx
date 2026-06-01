@@ -12,11 +12,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | IODE - University Admissions & Distance Education",
-    default: "IODE - University Admissions & Distance Education | Kerala's Leading Ed-Tech",
+    template: "%s | Vidyavasal - University Admissions & Distance Education",
+    default: "Vidyavasal - University Admissions & Distance Education | Kerala's Leading Ed-Tech",
   },
-  description: "IODE helps students get admitted to top universities across India. Expert guidance for UG, PG, MBA admissions, Eduthalim degrees, and Montessori counseling. Based in Kerala.",
-  keywords: ["university admissions", "distance education", "MBA Kerala", "UG PG admissions", "Montessori training", "Eduthalim degree", "IGNOU admission", "online degree India"],
+  description: "Vidyavasal helps students get admitted to top universities across India. Expert guidance for distance education, +1, +2, UG, PG, MBA admissions and courses. Based in Kerala.",
+  keywords: ["university admissions", "distance education", "MBA Kerala", "UG PG admissions", "+1 +2 Kerala", "IGNOU admission", "online degree India", "Vidyavasal"],
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -27,15 +27,15 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "IODE - Institute of Distance Education",
-    title: "IODE - University Admissions & Distance Education | Kerala",
-    description: "Expert guidance for university admissions, distance degrees, and Montessori training across India. 5,000+ students enrolled.",
+    siteName: "Vidyavasal",
+    title: "Vidyavasal - University Admissions & Distance Education | Kerala",
+    description: "Expert guidance for university admissions, distance education, and courses across India. 5,000+ students enrolled.",
     locale: "en_IN",
-    images: [{ url: "/logo.png", width: 1320, height: 680, alt: "IODE - Learn Anywhere. Grow Everywhere." }],
+    images: [{ url: "/logo.png", width: 1320, height: 680, alt: "Vidyavasal - Learn Anywhere. Grow Everywhere." }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "IODE - University Admissions & Distance Education",
+    title: "Vidyavasal - University Admissions & Distance Education",
     description: "Expert guidance for university admissions and distance education across India.",
     images: ["/logo.png"],
   },
@@ -48,11 +48,11 @@ export const metadata: Metadata = {
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
-  "name": "IODE - Institute of Distance Education",
-  "alternateName": "IODE",
+  "name": "Vidyavasal",
+  "alternateName": "Vidyavasal",
   "url": "https://iodeedu.in",
   "logo": "https://iodeedu.in/logo.png",
-  "description": "IODE provides expert university admissions guidance, distance education programs, and Montessori training across Kerala and India.",
+  "description": "Vidyavasal provides expert university admissions guidance, distance education programs, and courses across Kerala and India.",
   "address": {
     "@type": "PostalAddress",
     "addressRegion": "Kerala",

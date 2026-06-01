@@ -21,10 +21,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const uni = await getUniversityBySlug(slug);
   if (!uni) return {};
   return {
-    title: `${uni.name} — Online Courses, Fees & Admission | IODE`,
-    description: `Explore ${uni.name} online and distance education programs. Get course details, fee structure, eligibility and apply through IODE.`,
+    title: `${uni.name} — Online Courses, Fees & Admission | Vidyavasal`,
+    description: `Explore ${uni.name} online and distance education programs. Get course details, fee structure, eligibility and apply through Vidyavasal.`,
     openGraph: {
-      title: `${uni.name} — Online Education | IODE`,
+      title: `${uni.name} — Online Education | Vidyavasal`,
       description: `Explore courses and fees at ${uni.name}.`,
       images: uni.bannerImage ? [{ url: uni.bannerImage }] : [],
     },

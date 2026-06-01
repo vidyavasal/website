@@ -4,9 +4,9 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "University Admissions & Distance Education | IODE Kerala",
+  title: "University Admissions & Distance Education | Vidyavasal Kerala",
   description:
-    "IODE helps 5,000+ students get admitted to top universities across India. Expert guidance for UG, PG, MBA, distance degrees, and Montessori training.",
+    "Vidyavasal helps 5,000+ students get admitted to top universities across India. Expert guidance for distance education, +1, +2, UG, PG, MBA admissions and courses.",
 };
 
 const testimonials = [
@@ -15,7 +15,7 @@ const testimonials = [
     course: "MBA",
     university: "Manipal University",
     quote:
-      "IODE guided me step-by-step through the entire MBA admission process. Got admitted to my dream university within 3 weeks. Truly exceptional service!",
+      "Vidyavasal guided me step-by-step through the entire MBA admission process. Got admitted to my dream university within 3 weeks. Truly exceptional service!",
     initials: "PN",
     gradFrom: "#4F46E5",
     gradTo: "#7C3AED",
@@ -26,7 +26,7 @@ const testimonials = [
     course: "BBA",
     university: "IGNOU",
     quote:
-      "As a working professional, I was worried about balancing work and studies. IODE helped me find the perfect distance learning program that fits my schedule.",
+      "As a working professional, I was worried about balancing work and studies. Vidyavasal helped me find the perfect distance learning program that fits my schedule.",
     initials: "AK",
     gradFrom: "#0EA5E9",
     gradTo: "#06B6D4",
@@ -35,7 +35,7 @@ const testimonials = [
   {
     name: "Deepa Menon",
     course: "Montessori TTC",
-    university: "IODE",
+    university: "Vidyavasal",
     quote:
       "The Montessori training program completely transformed my teaching approach. The counselors were so supportive throughout my journey. Highly recommend!",
     initials: "DM",
@@ -893,9 +893,9 @@ export default function Home() {
       <section className="py-20 md:py-28 hero-mesh-bg">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <ScrollReveal className="text-center mb-12">
-            <span className="section-label-purple mb-4 inline-flex">Why IODE?</span>
+            <span className="section-label-purple mb-4 inline-flex">Why Vidyavasal?</span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#1D1D1F] mt-3">
-              Why 5,000+ students chose <span className="gradient-text-vivid">IODE</span>
+              Why 5,000+ students chose <span className="gradient-text-vivid">Vidyavasal</span>
             </h2>
           </ScrollReveal>
 
@@ -930,7 +930,7 @@ export default function Home() {
               Real students, <span className="gradient-text-vivid">real results</span>
             </h2>
             <p className="text-[#6E6E73] max-w-xl mx-auto text-base mt-4">
-              Hear from students who transformed their careers with IODE's guidance.
+              Hear from students who transformed their careers with Vidyavasal's guidance.
             </p>
           </ScrollReveal>
 
@@ -1032,7 +1032,7 @@ export default function Home() {
                 </h2>
                 <p className="text-white/60 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
                   Join 5,000+ students who have transformed their futures with
-                  IODE&apos;s expert admission guidance. Free consultation — no
+                  Vidyavasal&apos;s expert admission guidance. Free consultation — no
                   obligation.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -3,9 +3,9 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Contact IODE — Free University Admission Consultation",
+  title: "Contact Vidyavasal — Free University Admission Consultation",
   description:
-    "Get in touch with IODE for university admissions, counseling, and general inquiries. Free consultation available Mon–Sat 9am–7pm IST.",
+    "Get in touch with Vidyavasal for university admissions, counseling, and general inquiries. Free consultation available Mon–Sat 9am–7pm IST.",
 };
 
 const contactMethods = [
@@ -376,7 +376,7 @@ export default function ContactPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
           <ScrollReveal className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold text-[#1D1D1F]">
-              Why reach out to <span className="gradient-text-vivid">IODE?</span>
+              Why reach out to <span className="gradient-text-vivid">Vidyavasal?</span>
             </h2>
           </ScrollReveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">

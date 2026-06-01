@@ -38,7 +38,7 @@ export default function Header() {
         >
           <Image
             src="/logo.png"
-            alt="IODE — Learn Anywhere. Grow Everywhere."
+            alt="Vidyavasal — Learn Anywhere. Grow Everywhere."
             width={280}
             height={144}
             className="h-[72px] w-auto object-contain group-hover:opacity-90 transition-opacity"
