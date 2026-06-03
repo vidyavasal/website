@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Blog",
-  description: "Read the latest news, educational tips, and updates from IODE.",
+  description: "Read the latest news, educational tips, and updates from Vidyavasal.",
 };
 
 export default function BlogPage() {
@@ -22,7 +22,7 @@ export default function BlogPage() {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
             Latest Articles
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-[#1D1D1F] mt-3 mb-4 leading-tight">IODE Blog</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-[#1D1D1F] mt-3 mb-4 leading-tight">Vidyavasal Blog</h1>
           <p className="text-lg text-[#6E6E73]">Insights, updates, and educational guides.</p>
         </div>
       </section>

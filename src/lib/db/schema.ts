@@ -13,6 +13,19 @@ import {
 import { relations } from "drizzle-orm";
 
 // ============================================
+// Admin Users
+// ============================================
+export const adminUsers = pgTable("admin_users", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  email: varchar("email", { length: 255 }).unique().notNull(),
+  passwordHash: text("password_hash").notNull(),
+  name: varchar("name", { length: 255 }),
+  role: varchar("role", { length: 50 }).default("admin"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// ============================================
 // Universities
 // ============================================
 export const universities = pgTable(
@@ -24,6 +37,10 @@ export const universities = pgTable(
     shortName: varchar("short_name", { length: 100 }),
     slug: varchar("slug", { length: 255 }).unique(),
     logoUrl: text("logo_url"),
+    bannerImage: text("banner_image"),
+    galleryImages: text("gallery_images").array(),
+    highlights: jsonb("highlights"), // { naac, established, approvals, students, accreditation }
+    content: text("content"),        // markdown brochure body
     website: text("website"),
     universityType: varchar("university_type", { length: 100 }),
     country: varchar("country", { length: 100 }).default("India"),
@@ -78,11 +95,11 @@ export const courses = pgTable(
     totalSemesters: integer("total_semesters"),
     eligibility: text("eligibility"),
     description: text("description"),
+    content: text("content"),         // markdown brochure body
+    bannerImage: text("banner_image"),
     isOnline: boolean("is_online").default(true),
     isDistance: boolean("is_distance").default(false),
     tags: text("tags").array(),
-    // Note: search_vector (tsvector) is managed at the SQL level,
-    // not mapped in Drizzle since it's auto-populated via triggers/updates
     createdAt: timestamp("created_at").defaultNow(),
     updatedAt: timestamp("updated_at").defaultNow(),
   },
@@ -177,6 +194,8 @@ export const courseFeeBreakdownsRelations = relations(
 // ============================================
 // Type Exports
 // ============================================
+export type AdminUser = typeof adminUsers.$inferSelect;
+export type NewAdminUser = typeof adminUsers.$inferInsert;
 export type University = typeof universities.$inferSelect;
 export type NewUniversity = typeof universities.$inferInsert;
 export type CourseCategory = typeof courseCategories.$inferSelect;

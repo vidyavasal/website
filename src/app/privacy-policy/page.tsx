@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Privacy Policy for IODE.",
+  description: "Privacy Policy for Vidyavasal.",
 };
 
 export default function PrivacyPolicyPage() {
@@ -20,7 +20,7 @@ export default function PrivacyPolicyPage() {
             <p>Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p>
 
             <h2 className="text-2xl font-bold mt-10 mb-4 text-[#1D1D1F]">1. Introduction</h2>
-            <p>Welcome to the Institute of Distance Education (IODE). We respect your privacy and are committed to protecting your personal data.</p>
+            <p>Welcome to Vidyavasal. We respect your privacy and are committed to protecting your personal data.</p>
 
             <h2 className="text-2xl font-bold mt-10 mb-4 text-[#1D1D1F]">2. Information We Collect</h2>
             <p>We collect personal information that you voluntarily provide to us when you express an interest in obtaining information about us or our products and Services.</p>
