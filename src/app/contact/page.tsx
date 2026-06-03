@@ -1,16 +1,28 @@
 import { Metadata } from "next";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import Link from "next/link";
+import {
+  Phone,
+  MessageCircle,
+  Mail,
+  MapPin,
+  Clock,
+  Gift,
+  Zap,
+  Target,
+  Lock,
+  Send,
+} from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Contact IODE — Free University Admission Consultation",
+  title: "Contact Vidyavasal — Free University Admission Consultation",
   description:
-    "Get in touch with IODE for university admissions, counseling, and general inquiries. Free consultation available Mon–Sat 9am–7pm IST.",
+    "Get in touch with Vidyavasal for university admissions, counseling, and general inquiries. Free consultation available Mon–Sat 9am–7pm IST.",
 };
 
 const contactMethods = [
   {
-    icon: "📞",
+    Icon: Phone,
     label: "Call Us",
     value: "+91 00000 00000",
     sub: "Mon–Sat · 9am–7pm IST",
@@ -19,7 +31,7 @@ const contactMethods = [
     bg: "from-[#EEF2FF] to-[#E0E7FF]",
   },
   {
-    icon: "💬",
+    Icon: MessageCircle,
     label: "WhatsApp",
     value: "Chat Instantly",
     sub: "Typical reply in 5 min",
@@ -28,7 +40,7 @@ const contactMethods = [
     bg: "from-[#ECFDF5] to-[#D1FAE5]",
   },
   {
-    icon: "✉️",
+    Icon: Mail,
     label: "Email Us",
     value: "info@iodeedu.in",
     sub: "Reply within 2 hours",
@@ -37,7 +49,7 @@ const contactMethods = [
     bg: "from-[#E0F7FF] to-[#BAE6FD]",
   },
   {
-    icon: "📍",
+    Icon: MapPin,
     label: "Office",
     value: "Kerala, India",
     sub: "PIN 680000",
@@ -48,10 +60,10 @@ const contactMethods = [
 ];
 
 const reasons = [
-  { icon: "🆓", title: "Free Consultation", desc: "No fees, no hidden costs for your first counseling session." },
-  { icon: "⚡", title: "Fast Response", desc: "Our team replies within 2 hours on business days." },
-  { icon: "🎯", title: "Expert Matching", desc: "We find the exact university and course that fits your goals." },
-  { icon: "🔒", title: "100% Confidential", desc: "Your information is private and never shared with third parties." },
+  { Icon: Gift, title: "Free Consultation", desc: "No fees, no hidden costs for your first counseling session." },
+  { Icon: Zap, title: "Fast Response", desc: "Our team replies within 2 hours on business days." },
+  { Icon: Target, title: "Expert Matching", desc: "We find the exact university and course that fits your goals." },
+  { Icon: Lock, title: "100% Confidential", desc: "Your information is private and never shared with third parties." },
 ];
 
 export default function ContactPage() {
@@ -116,7 +128,9 @@ export default function ContactPage() {
                   rel={m.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   className={`flex flex-col items-center text-center p-5 rounded-2xl border border-[#E5E5EA] card-hover bg-gradient-to-br ${m.bg} group`}
                 >
-                  <span className="text-3xl mb-3">{m.icon}</span>
+                  <span className="w-12 h-12 rounded-xl bg-white/70 flex items-center justify-center mb-3" style={{ color: m.color }}>
+                    <m.Icon className="w-6 h-6" />
+                  </span>
                   <p className="font-semibold text-[#1D1D1F] text-sm mb-0.5 group-hover:text-[#4F46E5] transition-colors">
                     {m.label}
                   </p>
@@ -164,17 +178,17 @@ export default function ContactPage() {
                     <div className="space-y-5">
                       {[
                         {
-                          icon: "📞",
+                          Icon: Phone,
                           title: "Phone / WhatsApp",
                           lines: ["+91 00000 00000", "+91 11111 11111"],
                         },
                         {
-                          icon: "✉️",
+                          Icon: Mail,
                           title: "Email",
                           lines: ["info@iodeedu.in", "admissions@iodeedu.in"],
                         },
                         {
-                          icon: "📍",
+                          Icon: MapPin,
                           title: "Office Address",
                           lines: [
                             "Institute of Distance Education",
@@ -182,14 +196,14 @@ export default function ContactPage() {
                           ],
                         },
                         {
-                          icon: "🕘",
+                          Icon: Clock,
                           title: "Working Hours",
                           lines: ["Mon–Sat: 9:00 AM – 7:00 PM", "Sunday: Closed"],
                         },
                       ].map((item) => (
                         <div key={item.title} className="flex items-start gap-4">
-                          <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 border border-white/10 text-xl">
-                            {item.icon}
+                          <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 border border-white/10 text-white">
+                            <item.Icon className="w-5 h-5" />
                           </div>
                           <div>
                             <h3 className="font-semibold text-sm mb-1">{item.title}</h3>
@@ -254,8 +268,8 @@ export default function ContactPage() {
               <ScrollReveal direction="right">
                 <div className="bg-white rounded-3xl p-8 md:p-10 border border-[#E5E5EA] shadow-sm h-full">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] flex items-center justify-center text-white text-lg shadow-md">
-                      📬
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] flex items-center justify-center text-white shadow-md">
+                      <Send className="w-5 h-5" />
                     </div>
                     <div>
                       <h2 className="text-xl font-bold text-[#1D1D1F]">Send an Enquiry</h2>
@@ -312,7 +326,6 @@ export default function ContactPage() {
                       <select id="course" className="input-field">
                         <option value="">Select a program...</option>
                         <option value="admissions">University Admissions (UG / PG / MBA)</option>
-                        <option value="eduthalim">Eduthalim Degree / 10th / 12th</option>
                         <option value="montessori">Montessori Counseling &amp; Training</option>
                         <option value="other">Other / Not Sure</option>
                       </select>
@@ -346,7 +359,7 @@ export default function ContactPage() {
 
                     {/* Privacy note */}
                     <div className="flex items-start gap-2.5 p-4 bg-[#F5F3FF] rounded-xl border border-[#E0E7FF]">
-                      <span className="text-[#4F46E5] text-lg shrink-0">🔒</span>
+                      <Lock className="w-5 h-5 text-[#4F46E5] shrink-0" />
                       <p className="text-xs text-[#6E6E73] leading-relaxed">
                         Your information is 100% confidential. We never share your data with third parties.
                         By submitting, you agree to our{" "}
@@ -376,14 +389,16 @@ export default function ContactPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
           <ScrollReveal className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold text-[#1D1D1F]">
-              Why reach out to <span className="gradient-text-vivid">IODE?</span>
+              Why reach out to <span className="gradient-text-vivid">Vidyavasal?</span>
             </h2>
           </ScrollReveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
             {reasons.map((r, i) => (
               <ScrollReveal key={r.title} delay={i * 80}>
                 <div className="bg-white rounded-2xl p-6 border border-[#E5E5EA] card-hover text-center">
-                  <span className="text-3xl mb-3 block">{r.icon}</span>
+                  <span className="w-12 h-12 rounded-xl bg-[#F0EBFF] text-[#4F46E5] flex items-center justify-center mx-auto mb-3">
+                    <r.Icon className="w-6 h-6" />
+                  </span>
                   <h3 className="font-bold text-[#1D1D1F] text-sm mb-1.5">{r.title}</h3>
                   <p className="text-[#6E6E73] text-xs leading-relaxed">{r.desc}</p>
                 </div>

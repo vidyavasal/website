@@ -6,11 +6,11 @@ import Link from "next/link";
 export const revalidate = 3600; // ISR: rebuild every hour
 
 export const metadata: Metadata = {
-  title: "Browse Courses & Universities | IODE",
+  title: "Browse Courses & Universities | Vidyavasal",
   description:
     "Search 100+ courses across UGC-recognized universities. Filter by degree type, delivery mode, and fee range to find your perfect online or distance program.",
   openGraph: {
-    title: "Browse Courses & Universities | IODE",
+    title: "Browse Courses & Universities | Vidyavasal",
     description:
       "Find the right online or distance course from India's top universities — filter by type, mode, and fee.",
     type: "website",
@@ -23,7 +23,7 @@ export default async function CoursesPage() {
   const coursesJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "University Courses at IODE",
+    name: "University Courses at Vidyavasal",
     description:
       "Browse distance and online courses from top Indian universities",
     numberOfItems: courses.length,

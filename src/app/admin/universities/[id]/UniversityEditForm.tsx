@@ -43,6 +43,7 @@ export default function UniversityEditForm({ university: uni, courses }: Props) 
   const [universityType, setUniversityType] = useState(uni.universityType ?? "");
   const [state, setState] = useState(uni.state ?? "");
   const [city, setCity] = useState(uni.city ?? "");
+  const [logoUrl, setLogoUrl] = useState(uni.logoUrl ?? "");
   const [isActive, setIsActive] = useState(uni.isActive ?? true);
 
   // Brochure
@@ -65,7 +66,7 @@ export default function UniversityEditForm({ university: uni, courses }: Props) 
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name, shortName, code, slug, website, universityType, state, city, isActive,
+          name, shortName, code, slug, website, universityType, state, city, logoUrl, isActive,
           bannerImage, content, highlights, galleryImages,
         }),
       });
@@ -111,7 +112,19 @@ export default function UniversityEditForm({ university: uni, courses }: Props) 
 
       {/* Info Tab */}
       {tab === "Info" && (
-        <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-4">
+        <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-6">
+          {/* Logo */}
+          <div className="max-w-[180px]">
+            <ImageUploader
+              value={logoUrl}
+              onChange={setLogoUrl}
+              folder="/iode/universities/logos"
+              label="University Logo / Icon"
+              aspectRatio="1/1"
+            />
+            <p className="text-xs text-gray-400 mt-1.5">Square logo recommended (shown on cards & brochure).</p>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Field label="University Name *" value={name} onChange={setName} />
             <Field label="Short Name" value={shortName} onChange={setShortName} placeholder="e.g. AMRITA" />

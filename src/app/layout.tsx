@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SiteShell from "@/components/SiteShell";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -10,34 +11,41 @@ const inter = Inter({
   display: "swap",
 });
 
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
-    template: "%s | IODE - University Admissions & Distance Education",
-    default: "IODE - University Admissions & Distance Education | Kerala's Leading Ed-Tech",
+    template: "%s | Vidyavasal - University Admissions & Distance Education",
+    default: "Vidyavasal - University Admissions & Distance Education | Kerala's Leading Ed-Tech",
   },
-  description: "IODE helps students get admitted to top universities across India. Expert guidance for UG, PG, MBA admissions, Eduthalim degrees, and Montessori counseling. Based in Kerala.",
-  keywords: ["university admissions", "distance education", "MBA Kerala", "UG PG admissions", "Montessori training", "Eduthalim degree", "IGNOU admission", "online degree India"],
+  description: "Vidyavasal helps students get admitted to top universities across India. Expert guidance for distance education, +1, +2, UG, PG, MBA admissions and courses. Based in Kerala.",
+  keywords: ["university admissions", "distance education", "MBA Kerala", "UG PG admissions", "+1 +2 Kerala", "IGNOU admission", "online degree India", "Vidyavasal"],
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
-      { url: "/logo.png", type: "image/png" },
+      { url: "/logo.svg", type: "image/svg+xml" },
     ],
     shortcut: "/favicon.ico",
-    apple: "/logo.png",
+    apple: "/logo.svg",
   },
   openGraph: {
     type: "website",
-    siteName: "IODE - Institute of Distance Education",
-    title: "IODE - University Admissions & Distance Education | Kerala",
-    description: "Expert guidance for university admissions, distance degrees, and Montessori training across India. 5,000+ students enrolled.",
+    siteName: "Vidyavasal",
+    title: "Vidyavasal - University Admissions & Distance Education | Kerala",
+    description: "Expert guidance for university admissions, distance education, and courses across India. 5,000+ students enrolled.",
     locale: "en_IN",
-    images: [{ url: "/logo.png", width: 1320, height: 680, alt: "IODE - Learn Anywhere. Grow Everywhere." }],
+    images: [{ url: "/logo.svg", width: 572, height: 152, alt: "Vidyavasal - Learn Anywhere. Grow Everywhere." }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "IODE - University Admissions & Distance Education",
+    title: "Vidyavasal - University Admissions & Distance Education",
     description: "Expert guidance for university admissions and distance education across India.",
-    images: ["/logo.png"],
+    images: ["/logo.svg"],
   },
   robots: {
     index: true,
@@ -48,11 +56,11 @@ export const metadata: Metadata = {
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
-  "name": "IODE - Institute of Distance Education",
-  "alternateName": "IODE",
+  "name": "Vidyavasal",
+  "alternateName": "Vidyavasal",
   "url": "https://iodeedu.in",
-  "logo": "https://iodeedu.in/logo.png",
-  "description": "IODE provides expert university admissions guidance, distance education programs, and Montessori training across Kerala and India.",
+  "logo": "https://iodeedu.in/logo.svg",
+  "description": "Vidyavasal provides expert university admissions guidance, distance education programs, and courses across Kerala and India.",
   "address": {
     "@type": "PostalAddress",
     "addressRegion": "Kerala",
@@ -78,7 +86,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased scroll-smooth`}>
+    <html lang="en" className={`${inter.variable} ${poppins.variable} h-full antialiased scroll-smooth`}>
       <head>
         <script
           type="application/ld+json"
@@ -86,15 +94,20 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col font-sans bg-white text-[#1D1D1F]">
-        <div className="print:hidden">
-          <Header />
-        </div>
-        <main className="flex-grow pt-[88px] print:pt-0">
+        <SiteShell
+          header={
+            <div className="print:hidden">
+              <Header />
+            </div>
+          }
+          footer={
+            <div className="print:hidden">
+              <Footer />
+            </div>
+          }
+        >
           {children}
-        </main>
-        <div className="print:hidden">
-          <Footer />
-        </div>
+        </SiteShell>
       </body>
     </html>
   );

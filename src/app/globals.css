@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
 @theme inline {
+  /* Primary Brand Color */
+  --color-primary: #9381FF;
+  --color-primary-hover: #8270E8;
+  --color-primary-light: #F5F2FF;
+
   /* iOS Blue Color System */
   --color-ios-blue: #007AFF;
   --color-ios-blue-hover: #0066D6;
@@ -20,11 +25,11 @@
   --color-border: #E5E5EA;
   --color-border-light: #F0F0F2;
 
-  /* Legacy brand aliases (mapped to iOS blue) */
-  --color-brand-primary: #007AFF;
-  --color-brand-light: #5AC8FA;
-  --color-brand-dark: #0066D6;
-  --color-brand-accent: #007AFF;
+  /* Legacy brand aliases (mapped to primary purple) */
+  --color-brand-primary: #9381FF;
+  --color-brand-light: #F5F2FF;
+  --color-brand-dark: #8270E8;
+  --color-brand-accent: #9381FF;
 
   --font-sans: var(--font-inter);
 
@@ -84,17 +89,14 @@ body {
   background-clip: text;
 }
 
-/* Gradient Text — Purple/Blue */
+/* Solid Text — Purple */
 .gradient-text-purple {
-  background: linear-gradient(135deg, #7B61FF 0%, #007AFF 50%, #5AC8FA 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #9381FF;
 }
 
 /* Animated gradient text */
 .gradient-text-animate {
-  background: linear-gradient(135deg, #7B61FF, #007AFF, #5AC8FA, #34C759, #007AFF);
+  background: linear-gradient(135deg, #9381FF, #007AFF, #5AC8FA, #34C759, #007AFF);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -106,7 +108,7 @@ body {
 .hero-mesh-bg {
   background-color: #f5f7ff;
   background-image:
-    radial-gradient(at 15% 30%, rgba(123, 97, 255, 0.18) 0px, transparent 55%),
+    radial-gradient(at 15% 30%, rgba(147, 129, 255, 0.18) 0px, transparent 55%),
     radial-gradient(at 85% 15%, rgba(0, 122, 255, 0.14) 0px, transparent 55%),
     radial-gradient(at 50% 80%, rgba(90, 200, 250, 0.12) 0px, transparent 55%),
     radial-gradient(at 90% 65%, rgba(52, 199, 89, 0.08) 0px, transparent 50%),
@@ -116,7 +118,7 @@ body {
 .section-mesh-bg {
   background-color: #fafaff;
   background-image:
-    radial-gradient(at 80% 20%, rgba(123, 97, 255, 0.1) 0px, transparent 60%),
+    radial-gradient(at 80% 20%, rgba(147, 129, 255, 0.1) 0px, transparent 60%),
     radial-gradient(at 20% 80%, rgba(0, 122, 255, 0.08) 0px, transparent 60%);
 }
 
@@ -153,7 +155,7 @@ body {
 .glass-card-hover:hover {
   transform: translateY(-5px);
   background: rgba(255, 255, 255, 0.88);
-  box-shadow: 0 20px 60px rgba(123, 97, 255, 0.12),
+  box-shadow: 0 20px 60px rgba(147, 129, 255, 0.12),
               0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
@@ -176,8 +178,8 @@ body {
   align-items: center;
   gap: 6px;
   padding: 6px 16px;
-  background: rgba(123, 97, 255, 0.1);
-  color: #7B61FF;
+  background: rgba(147, 129, 255, 0.1);
+  color: #9381FF;
   font-size: 0.8125rem;
   font-weight: 600;
   border-radius: 9999px;
@@ -216,15 +218,15 @@ select:focus {
   transform: scale(0.97);
 }
 
-/* Gradient button */
+/* Primary button */
 .btn-gradient {
-  background: linear-gradient(135deg, #7B61FF 0%, #007AFF 100%);
-  box-shadow: 0 4px 20px rgba(123, 97, 255, 0.35);
+  background: #9381FF;
+  box-shadow: 0 4px 20px rgba(147, 129, 255, 0.35);
   transition: all 0.3s ease;
 }
 .btn-gradient:hover {
-  background: linear-gradient(135deg, #6B4FEF 0%, #0066D6 100%);
-  box-shadow: 0 8px 30px rgba(123, 97, 255, 0.45);
+  background: #8270E8;
+  box-shadow: 0 8px 30px rgba(147, 129, 255, 0.45);
   transform: translateY(-1px);
 }
 
@@ -265,7 +267,7 @@ button:hover .cta-arrow {
   animation: blob 14s ease-in-out infinite 4s;
 }
 
-/* Gradient card borders */
+/* Primary card borders */
 .gradient-border {
   position: relative;
 }
@@ -275,7 +277,7 @@ button:hover .cta-arrow {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, #7B61FF, #007AFF, #5AC8FA);
+  background: #9381FF;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -371,7 +373,7 @@ button:hover .cta-arrow {
 
 /* Selection color */
 ::selection {
-  background: rgba(123, 97, 255, 0.2);
+  background: rgba(147, 129, 255, 0.2);
   color: #1D1D1F;
 }
 

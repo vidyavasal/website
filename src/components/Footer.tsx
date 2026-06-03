@@ -1,37 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import NewsletterForm from './NewsletterForm';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-white border-t border-[#E5E5EA]">
-      {/* Newsletter Section */}
-      <div className="relative overflow-hidden" style={{background: 'linear-gradient(135deg, #0f0c29 0%, #1a1040 50%, #0a1628 100%)'}}>
-        <div className="absolute inset-0 dot-pattern opacity-20"></div>
-        <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl opacity-20" style={{background: 'radial-gradient(circle, #7B61FF, transparent)'}}></div>
-        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
-          <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-            <div className="flex-1">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-semibold text-white/80 mb-4 border border-white/10">
-                <span className="w-2 h-2 rounded-full bg-[#34C759] animate-pulse-soft"></span>
-                Stay updated
-              </span>
-              <h3 className="text-2xl md:text-3xl font-bold text-white mt-3 leading-tight">
-                Subscribe to<br />our newsletter
-              </h3>
-            </div>
-            <div className="flex-1 w-full md:w-auto">
-              <p className="text-white/60 text-sm mb-4">
-                Get the latest university news, admission dates, and learning tips delivered to your inbox.
-              </p>
-              <NewsletterForm />
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Footer */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12">
@@ -39,11 +13,11 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-1 space-y-4">
             <Link href="/">
               <Image
-                src="/logo.png"
-                alt="IODE — Learn Anywhere. Grow Everywhere."
-                width={320}
-                height={165}
-                className="h-[88px] w-auto object-contain"
+                src="/logo.svg"
+                alt="Vidyavasal — Learn Anywhere. Grow Everywhere."
+                width={200}
+                height={53}
+                className="h-[60px] w-auto object-contain"
               />
             </Link>
             <p className="text-sm text-[#6E6E73] leading-relaxed max-w-[260px]">
@@ -71,7 +45,6 @@ export default function Footer() {
             <h4 className="text-[#1D1D1F] font-semibold text-sm mb-4">Programs</h4>
             <ul className="space-y-3 text-sm">
               <li><Link href="/admissions" className="text-[#6E6E73] hover:text-[#007AFF] transition-colors">University Admissions</Link></li>
-              <li><Link href="/eduthalim" className="text-[#6E6E73] hover:text-[#007AFF] transition-colors">Eduthalim Degree</Link></li>
               <li><Link href="/montessori" className="text-[#6E6E73] hover:text-[#007AFF] transition-colors">Montessori Counseling</Link></li>
               <li><Link href="/courses" className="text-[#6E6E73] hover:text-[#007AFF] transition-colors">Explore Universities</Link></li>
               <li><Link href="/courses" className="text-[#6E6E73] hover:text-[#007AFF] transition-colors">View All Courses</Link></li>
@@ -111,7 +84,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-[#E5E5EA] flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[#AEAEB2]">
-          <p>&copy; {currentYear} Institute of Distance Education (IODE). All rights reserved.</p>
+          <p>&copy; {currentYear} Vidyavasal. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <Link href="/privacy-policy" className="hover:text-[#007AFF] transition-colors">Privacy Policy</Link>
             <span className="text-[#E5E5EA]">|</span>

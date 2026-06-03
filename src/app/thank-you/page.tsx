@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Thank You",
-  description: "Thank you for contacting IODE.",
+  description: "Thank you for contacting Vidyavasal.",
 };
 
 export default function ThankYouPage() {

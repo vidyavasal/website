@@ -1,55 +1,67 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import {
+  Sprout,
+  PartyPopper,
+  Handshake,
+  School,
+  GraduationCap,
+  Rocket,
+  UserRound,
+  Eye,
+  Award,
+  Heart,
+} from "lucide-react";
 import { StatCounter } from "@/components/StatCounter";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "About IODE — Kerala's Leading Education Consultancy",
+  title: "About Vidyavasal — Kerala's Leading Education Consultancy",
   description:
-    "Learn about Institute of Distance Education (IODE) — our mission to connect 5,000+ students with top UGC-recognized universities across India since 2016.",
+    "Learn about Vidyavasal — our mission to connect 5,000+ students with top UGC-recognized universities across India since 2016.",
 };
 
 const milestones = [
   {
     year: "2016",
     title: "Founded in Kerala",
-    desc: "IODE was established to bridge the gap in accessible, quality education for students and professionals.",
-    emoji: "🌱",
+    desc: "Vidyavasal was established to bridge the gap in accessible, quality education for students and professionals.",
+    Icon: Sprout,
     color: "#4F46E5",
   },
   {
     year: "2018",
     title: "First 500 Students",
     desc: "Crossed our first milestone of 500 enrolled students across distance and degree programs.",
-    emoji: "🎉",
+    Icon: PartyPopper,
     color: "#0EA5E9",
   },
   {
     year: "2020",
     title: "University Partnerships",
     desc: "Established partnerships with 10+ UGC-recognized universities across India.",
-    emoji: "🤝",
+    Icon: Handshake,
     color: "#10B981",
   },
   {
     year: "2022",
     title: "Montessori Division",
     desc: "Launched specialized Montessori counseling and teacher training programs.",
-    emoji: "🏫",
+    Icon: School,
     color: "#F59E0B",
   },
   {
     year: "2024",
     title: "5,000+ Students",
     desc: "Celebrated a community of over 5,000 students successfully placed in top universities.",
-    emoji: "🎓",
+    Icon: GraduationCap,
     color: "#7C3AED",
   },
   {
     year: "2026",
     title: "25+ Universities",
     desc: "Expanded our network to 25+ partner universities with 120+ courses across India.",
-    emoji: "🚀",
+    Icon: Rocket,
     color: "#EC4899",
   },
 ];
@@ -57,28 +69,28 @@ const milestones = [
 const values = [
   {
     title: "Student-First",
-    icon: "👨‍🎓",
+    Icon: UserRound,
     desc: "Every decision we make is guided by what is best for the student — from the first consultation to final enrollment.",
     color: "#4F46E5",
     bg: "from-[#EEF2FF] to-[#E0E7FF]",
   },
   {
     title: "Transparency",
-    icon: "👁️",
+    Icon: Eye,
     desc: "We clearly explain fees, processes, and timelines so there are no surprises — ever.",
     color: "#0EA5E9",
     bg: "from-[#E0F7FF] to-[#BAE6FD]",
   },
   {
     title: "Excellence",
-    icon: "🏅",
+    Icon: Award,
     desc: "We partner only with UGC-approved, DEB-recognized universities to ensure your degree has national value.",
     color: "#F59E0B",
     bg: "from-[#FFFBEB] to-[#FEF3C7]",
   },
   {
     title: "Lifelong Support",
-    icon: "💛",
+    Icon: Heart,
     desc: "Our relationship doesn't end at enrollment — we offer placement support, mentoring, and career guidance.",
     color: "#10B981",
     bg: "from-[#ECFDF5] to-[#D1FAE5]",
@@ -106,13 +118,6 @@ const team = [
     initials: "MD",
     grad: "from-[#10B981] to-[#059669]",
     count: "6+ Trainers",
-  },
-  {
-    name: "Eduthalim Wing",
-    role: "Bridge Education",
-    initials: "EW",
-    grad: "from-[#F59E0B] to-[#D97706]",
-    count: "5+ Mentors",
   },
 ];
 
@@ -142,7 +147,7 @@ export default function AboutPage() {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              About IODE
+              About Vidyavasal
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1D1D1F] mt-3 mb-6 leading-tight">
               Empowering futures through
@@ -150,7 +155,7 @@ export default function AboutPage() {
               <span className="gradient-text-vivid">quality education</span>
             </h1>
             <p className="text-lg text-[#6E6E73] max-w-2xl mx-auto leading-relaxed">
-              Institute of Distance Education (IODE) is Kerala&apos;s leading admission and
+              Vidyavasal is Kerala&apos;s leading admission and
               education consultancy, connecting students with the best universities and
               programs across India since 2016.
             </p>
@@ -313,9 +318,10 @@ export default function AboutPage() {
                   className={`rounded-3xl p-7 border border-[#E5E5EA] card-hover bg-gradient-to-br ${v.bg} flex gap-5 items-start`}
                 >
                   <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shrink-0 shadow-sm bg-white/70"
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 shadow-sm bg-white/70"
+                    style={{ color: v.color }}
                   >
-                    {v.icon}
+                    <v.Icon className="w-7 h-7" />
                   </div>
                   <div>
                     <h3 className="text-lg font-bold mb-1.5" style={{ color: v.color }}>
@@ -353,12 +359,12 @@ export default function AboutPage() {
                   <div className="flex gap-6 items-start">
                     <div className="relative shrink-0 z-10">
                       <div
-                        className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg text-2xl"
+                        className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg text-white"
                         style={{
                           background: `linear-gradient(135deg, ${m.color}ee, ${m.color}99)`,
                         }}
                       >
-                        {m.emoji}
+                        <m.Icon className="w-7 h-7" />
                       </div>
                     </div>
                     <div className="bg-white rounded-2xl p-5 border border-[#E5E5EA] flex-1 card-hover">
@@ -434,9 +440,11 @@ export default function AboutPage() {
                 style={{ background: "radial-gradient(circle, #4F46E5, transparent)" }}
               />
               <div className="relative z-10">
-                <p className="text-4xl mb-4">🎓</p>
+                <div className="w-14 h-14 rounded-2xl bg-white/15 text-white flex items-center justify-center mx-auto mb-4">
+                  <GraduationCap className="w-7 h-7" />
+                </div>
                 <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  Join the IODE Family
+                  Join the Vidyavasal Family
                 </h2>
                 <p className="text-white/60 mb-8 max-w-lg mx-auto">
                   Be one of 5,000+ students who found their perfect university with us. Free consultation — no obligation.

@@ -1,6 +1,6 @@
-# IODE — Institute of Distance Education
+# Vidyavasal — University Admissions & Distance Education
 
-Kerala's leading Ed-Tech platform. Built with **Next.js 16**, **NeonDB** (Serverless PostgreSQL), and **Drizzle ORM**.
+Kerala's leading Ed-Tech platform for university admissions, distance education, and online courses. Built with **Next.js 16**, **NeonDB** (Serverless PostgreSQL), and **Drizzle ORM**.
 
 ---
 
@@ -16,7 +16,7 @@ Kerala's leading Ed-Tech platform. Built with **Next.js 16**, **NeonDB** (Server
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/mubashirspam/iode.git
+git clone <your-repo-url>
 cd iode
 
 # 2. Install dependencies
@@ -151,31 +151,37 @@ iode/
 ├── drizzle/                  # Auto-generated migration SQL files
 ├── docs/
 │   └── database-setup.md     # Database documentation
-├── public/                   # Static assets
+├── public/                   # Static assets (logo, favicon, etc.)
 ├── src/
 │   ├── app/                  # Next.js App Router pages
-│   │   ├── layout.tsx        # Root layout
+│   │   ├── layout.tsx        # Root layout with metadata
 │   │   ├── page.tsx          # Home page
 │   │   ├── about/
-│   │   ├── blog/
+│   │   ├── admin/            # Admin dashboard
 │   │   ├── contact/
 │   │   ├── courses/
 │   │   ├── eduthalim/
-│   │   ├── iits/
 │   │   ├── montessori/
-│   │   └── privacy-policy/
-│   ├── components/           # Shared components
+│   │   ├── privacy-policy/
+│   │   ├── universities/
+│   │   ├── api/              # API routes
+│   │   └── favicon.ico       # Site favicon
+│   ├── components/           # Shared React components
 │   │   ├── Header.tsx
 │   │   ├── Footer.tsx
-│   │   └── NewsletterForm.tsx
+│   │   ├── NewsletterForm.tsx
+│   │   └── admin/
 │   └── lib/
-│       └── db/
-│           ├── index.ts      # Database connection
-│           └── schema.ts     # Drizzle ORM schema & types
+│       ├── db/
+│       │   ├── index.ts      # Database connection
+│       │   └── schema.ts     # Drizzle ORM schema & types
+│       └── utils/
 ├── drizzle.config.ts         # Drizzle Kit config
 ├── next.config.ts            # Next.js config
+├── tailwind.config.ts        # Tailwind CSS config
 ├── .env.example              # Env template (safe to commit)
 ├── .env.local                # Your env secrets (gitignored)
+├── CLAUDE.md                 # Claude Code instructions
 └── package.json
 ```
 

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { Landmark, GraduationCap } from 'lucide-react';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -21,29 +22,35 @@ export default function Header() {
     href === '/' ? pathname === '/' : pathname.startsWith(href);
 
   return (
-    <header
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/90 backdrop-blur-2xl shadow-sm border-b border-[#E5E5EA]'
-          : 'bg-white/70 backdrop-blur-xl border-b border-transparent'
-      }`}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-[88px] flex items-center justify-between">
+    <header className="fixed inset-x-0 top-0 z-50 px-3 sm:px-4 pt-3 sm:pt-4 pointer-events-none">
+      <div
+        className={`pointer-events-auto mx-auto max-w-6xl transition-all duration-300 ${
+          mobileMenuOpen ? 'rounded-3xl' : 'rounded-full'
+        } ${
+          scrolled
+            ? 'bg-white/90 backdrop-blur-2xl shadow-lg shadow-black/[0.06] border border-[#E5E5EA]'
+            : 'bg-white/70 backdrop-blur-xl shadow-md shadow-black/[0.04] border border-white/60'
+        }`}
+      >
+        <div className="px-5 sm:px-7 h-16 flex items-center justify-between">
 
         {/* ── Logo ── */}
         <Link
           href="/"
-          className="flex items-center group"
+          className="flex items-center gap-2.5 group"
           onClick={() => setMobileMenuOpen(false)}
         >
           <Image
-            src="/logo.png"
-            alt="IODE — Learn Anywhere. Grow Everywhere."
-            width={280}
-            height={144}
-            className="h-[72px] w-auto object-contain group-hover:opacity-90 transition-opacity"
+            src="/logo.svg"
+            alt="Vidyavasal — Learn Anywhere. Grow Everywhere."
+            width={30}
+            height={30}
+           className="h-[30px] w-auto object-contain group-hover:opacity-90 transition-opacity"
             priority
           />
+          <span className="font-poppins text-[#1D1D1F] font-semibold text-xl tracking-tight">
+            vidyavasal
+          </span>
         </Link>
 
         {/* ── Desktop Nav ── */}
@@ -69,7 +76,7 @@ export default function Header() {
           <div className="relative group cursor-pointer">
             <span
               className={`relative py-1 transition-colors duration-200 flex items-center gap-1 ${
-                ['/admissions', '/eduthalim', '/montessori'].some((p) => pathname.startsWith(p))
+                ['/admissions', '/montessori'].some((p) => pathname.startsWith(p))
                   ? 'text-[#4F46E5]'
                   : 'hover:text-[#1D1D1F]'
               }`}
@@ -91,12 +98,6 @@ export default function Header() {
                   label: 'University Admissions',
                   color: 'from-[#4F46E5] to-[#7C3AED]',
                   icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />,
-                },
-                {
-                  href: '/eduthalim',
-                  label: 'Eduthalim Degree',
-                  color: 'from-[#F59E0B] to-[#D97706]',
-                  icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />,
                 },
                 {
                   href: '/montessori',
@@ -160,7 +161,7 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <Link
             href="/contact"
-            className="hidden sm:flex items-center justify-center px-5 py-2.5 rounded-full btn-gradient-vivid text-white font-semibold text-sm btn-press gap-2 shadow-md hover:shadow-lg transition-shadow"
+            className="hidden sm:flex items-center justify-center px-5 py-2.5 rounded-full bg-primary text-white font-semibold text-sm btn-press gap-2 shadow-md hover:shadow-lg transition-shadow"
           >
             Enquire Now
             <svg className="w-4 h-4 cta-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -189,8 +190,8 @@ export default function Header() {
 
       {/* ── Mobile Menu ── */}
       {mobileMenuOpen && (
-        <div className="md:hidden animate-slide-down border-t border-[#E5E5EA] bg-white/98 backdrop-blur-2xl">
-          <nav className="container mx-auto px-4 py-4 flex flex-col gap-1">
+        <div className="md:hidden animate-slide-down border-t border-[#E5E5EA] rounded-b-2xl overflow-hidden">
+          <nav className="px-3 py-4 flex flex-col gap-1">
             {[
               { href: '/', label: 'Home' },
               { href: '/about', label: 'About' },
@@ -215,9 +216,8 @@ export default function Header() {
             </div>
 
             {[
-              { href: '/admissions', label: 'University Admissions', grad: 'from-[#4F46E5] to-[#7C3AED]', emoji: '🏛️' },
-              { href: '/eduthalim', label: 'Eduthalim Degree', grad: 'from-[#F59E0B] to-[#D97706]', emoji: '📚' },
-              { href: '/montessori', label: 'Montessori', grad: 'from-[#10B981] to-[#059669]', emoji: '🎓' },
+              { href: '/admissions', label: 'University Admissions', grad: 'from-[#4F46E5] to-[#7C3AED]', Icon: Landmark },
+              { href: '/montessori', label: 'Montessori', grad: 'from-[#10B981] to-[#059669]', Icon: GraduationCap },
             ].map((item) => (
               <Link
                 key={item.href}
@@ -229,8 +229,8 @@ export default function Header() {
                     : 'hover:bg-[#F5F5F7] text-[#6E6E73]'
                 }`}
               >
-                <span className={`w-7 h-7 rounded-lg bg-gradient-to-br ${item.grad} flex items-center justify-center text-sm`}>
-                  {item.emoji}
+                <span className={`w-7 h-7 rounded-lg bg-gradient-to-br ${item.grad} flex items-center justify-center`}>
+                  <item.Icon className="w-4 h-4 text-white" />
                 </span>
                 {item.label}
               </Link>
@@ -271,6 +271,7 @@ export default function Header() {
           </nav>
         </div>
       )}
+      </div>
     </header>
   );
 }

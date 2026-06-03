@@ -1,12 +1,30 @@
 import Link from "next/link";
+import Image from "next/image";
+import {
+  ArrowRight,
+  Search,
+  ShieldCheck,
+  Target,
+  Gift,
+  Landmark,
+  Star,
+  Zap,
+  Wallet,
+  Headset,
+  Award,
+  Handshake,
+  MessageCircle,
+  FileCheck,
+  Rocket,
+} from "lucide-react";
 import { StatCounter } from "@/components/StatCounter";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "University Admissions & Distance Education | IODE Kerala",
+  title: "University Admissions & Distance Education | Vidyavasal Kerala",
   description:
-    "IODE helps 5,000+ students get admitted to top universities across India. Expert guidance for UG, PG, MBA, distance degrees, and Montessori training.",
+    "Vidyavasal helps 5,000+ students get admitted to top universities across India. Expert guidance for distance education, +1, +2, UG, PG, MBA admissions and courses.",
 };
 
 const testimonials = [
@@ -15,8 +33,10 @@ const testimonials = [
     course: "MBA",
     university: "Manipal University",
     quote:
-      "IODE guided me step-by-step through the entire MBA admission process. Got admitted to my dream university within 3 weeks. Truly exceptional service!",
+      "Vidyavasal guided me step-by-step through the entire MBA admission process. Got admitted to my dream university within 3 weeks. Truly exceptional service!",
     initials: "PN",
+    photo:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80",
     gradFrom: "#4F46E5",
     gradTo: "#7C3AED",
     location: "Kochi, Kerala",
@@ -26,8 +46,10 @@ const testimonials = [
     course: "BBA",
     university: "IGNOU",
     quote:
-      "As a working professional, I was worried about balancing work and studies. IODE helped me find the perfect distance learning program that fits my schedule.",
+      "As a working professional, I was worried about balancing work and studies. Vidyavasal helped me find the perfect distance learning program that fits my schedule.",
     initials: "AK",
+    photo:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
     gradFrom: "#0EA5E9",
     gradTo: "#06B6D4",
     location: "Thrissur, Kerala",
@@ -35,10 +57,12 @@ const testimonials = [
   {
     name: "Deepa Menon",
     course: "Montessori TTC",
-    university: "IODE",
+    university: "Vidyavasal",
     quote:
       "The Montessori training program completely transformed my teaching approach. The counselors were so supportive throughout my journey. Highly recommend!",
     initials: "DM",
+    photo:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80",
     gradFrom: "#10B981",
     gradTo: "#059669",
     location: "Kozhikode, Kerala",
@@ -129,32 +153,32 @@ const trustBadges = [
 
 const features = [
   {
-    icon: "🎯",
+    Icon: Target,
     title: "100% Admission Success",
     desc: "Our counselors have a near-perfect track record for university placements.",
   },
   {
-    icon: "⚡",
+    Icon: Zap,
     title: "Fast Processing",
     desc: "Get admitted in as little as 2–3 weeks with our expedited enrollment process.",
   },
   {
-    icon: "💰",
+    Icon: Wallet,
     title: "Best Fee Guarantee",
     desc: "We negotiate the best fee structures and EMI options on your behalf.",
   },
   {
-    icon: "📱",
+    Icon: Headset,
     title: "End-to-End Support",
     desc: "From document collection to degree certificate — we handle it all.",
   },
   {
-    icon: "🏅",
+    Icon: Award,
     title: "UGC & DEB Approved",
     desc: "Only universities with full UGC and DEB recognition — your degree is valid nationwide.",
   },
   {
-    icon: "🤝",
+    Icon: Handshake,
     title: "Free Consultation",
     desc: "No fees, no obligations — our first consultation is always free.",
   },
@@ -164,79 +188,24 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* ══════════════════════ HERO ══════════════════════ */}
-      <section className="relative overflow-hidden hero-vivid-bg pt-20 md:pt-28 lg:pt-36 pb-16 md:pb-24">
-        {/* Animated orbs */}
-        <div
-          className="absolute top-0 right-0 w-[800px] h-[800px] rounded-full blob-1 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(79,70,229,0.25), rgba(124,58,237,0.15), transparent 65%)",
-            transform: "translate(35%, -45%)",
-          }}
+      <section className="relative overflow-hidden -mt-[80px] min-h-[90vh] flex items-center">
+        {/* Background image (designed with empty space on the left for copy;
+            on mobile we crop to the right so the subject stays visible) */}
+        <Image
+          src="https://ik.imagekit.io/vidyavasal/hero.png?updatedAt=1780493516691"
+          alt="Vidyavasal — university admissions and distance education"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-right -z-10"
         />
-        <div
-          className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full blob-2 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(14,165,233,0.25), rgba(6,182,212,0.1), transparent 65%)",
-            transform: "translate(-35%, 35%)",
-          }}
-        />
-        <div
-          className="absolute top-1/3 left-1/4 w-[400px] h-[400px] rounded-full blob-3 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(16,185,129,0.12), transparent 60%)",
-          }}
-        />
+        {/* Legibility wash — strong on the left/mobile, fading toward the image */}
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-white via-white/85 to-white/10 md:from-white/95 md:via-white/55 md:to-transparent" />
 
-        {/* Floating badges */}
-        <div className="absolute top-28 left-6 lg:left-20 hidden lg:flex items-center gap-2 float-stat-card float-slow z-10">
-          <span className="text-xl">🎓</span>
-          <div>
-            <p className="font-bold text-[#1D1D1F] text-sm leading-none">5,000+</p>
-            <p className="text-[#6E6E73] text-xs mt-0.5">Happy Students</p>
-          </div>
-        </div>
-        <div className="absolute top-48 right-4 lg:right-16 hidden lg:flex items-center gap-2 float-stat-card float-medium z-10">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#10B981] to-[#059669] flex items-center justify-center">
-            <svg
-              className="w-4 h-4 text-white"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </div>
-          <div>
-            <p className="font-bold text-[#1D1D1F] text-sm leading-none">UGC Approved</p>
-            <p className="text-[#6E6E73] text-xs mt-0.5">All universities</p>
-          </div>
-        </div>
-        <div className="absolute bottom-28 left-10 lg:left-24 hidden lg:flex items-center gap-2 float-stat-card float-fast z-10">
-          <div className="flex">
-            {[...Array(5)].map((_, i) => (
-              <svg
-                key={i}
-                className="w-3.5 h-3.5 text-[#F59E0B]"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-              </svg>
-            ))}
-          </div>
-          <span className="font-bold text-[#1D1D1F] text-sm">4.9 Rating</span>
-        </div>
-
-        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
-          <div className="text-center">
+        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl pt-[80px]">
+          <div className="max-w-xl">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full glass-card border border-white/70 mb-8 animate-fade-in-up">
+            <div className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full glass-card border border-white/70 mb-7 animate-fade-in-up">
               <span className="relative flex h-2 w-2">
                 <span className="pulse-ring animate-ping absolute inline-flex h-full w-full rounded-full bg-[#34C759] opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#34C759]"></span>
@@ -244,20 +213,19 @@ export default function Home() {
               <span className="text-sm font-semibold text-[#1D1D1F]">
                 Admissions Open 2026
               </span>
-              <span className="text-sm text-[#6E6E73]">
-                · Trusted by 5,000+ students
+              <span className="hidden sm:inline text-sm text-[#6E6E73]">
+                · 5,000+ students
               </span>
             </div>
 
             {/* Heading */}
-            <h1 className="text-4xl md:text-5xl lg:text-[4.75rem] font-extrabold tracking-tight mb-6 text-[#1D1D1F] leading-[1.06] animate-fade-in-up delay-100">
+            <h1 className="text-4xl md:text-5xl lg:text-[3.75rem] font-extrabold tracking-tight mb-6 text-[#1D1D1F] leading-[1.07] animate-fade-in-up delay-100">
               Your Gateway to{" "}
-              <span className="gradient-text-vivid">Top Universities</span>
-              <br className="hidden md:block" />
+              <span className="gradient-text-vivid">Top Universities</span>{" "}
               Across India
             </h1>
 
-            <p className="mt-4 text-lg md:text-xl text-[#6E6E73] max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up delay-200">
+            <p className="text-lg md:text-xl text-[#3A3A3C] max-w-lg mb-9 leading-relaxed animate-fade-in-up delay-200">
               Expert admission guidance for UG, PG, MBA & distance degree
               programs. We connect you to{" "}
               <span className="font-semibold text-[#4F46E5]">
@@ -267,120 +235,36 @@ export default function Home() {
             </p>
 
             {/* CTA */}
-            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center animate-fade-in-up delay-300 mb-10">
+            <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center animate-fade-in-up delay-300 mb-9">
               <Link
                 href="/admissions"
-                className="px-8 py-4 rounded-full btn-gradient-vivid text-white font-bold text-base w-full sm:w-auto flex items-center justify-center gap-2 btn-press"
+                className="px-8 py-4 rounded-full btn-gradient-vivid text-white font-bold text-base flex items-center justify-center gap-2 btn-press"
               >
                 Start Your Admission
-                <svg
-                  className="w-5 h-5 cta-arrow"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
+                <ArrowRight className="w-5 h-5 cta-arrow" />
               </Link>
               <Link
                 href="/courses"
-                className="px-8 py-4 rounded-full bg-white text-[#1D1D1F] font-semibold text-base border border-[#E5E5EA] hover:border-[#7C3AED] hover:text-[#7C3AED] hover:bg-[#F5F3FF] transition-all shadow-sm w-full sm:w-auto flex items-center justify-center gap-2"
+                className="px-8 py-4 rounded-full bg-white text-[#1D1D1F] font-semibold text-base border border-[#E5E5EA] hover:border-[#7C3AED] hover:text-[#7C3AED] hover:bg-[#F5F3FF] transition-all shadow-sm flex items-center justify-center gap-2"
               >
-                Browse 120+ Courses
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
+                Browse Courses
+                <Search className="w-5 h-5" />
               </Link>
             </div>
 
-            {/* Quick stats row */}
-            <div className="animate-fade-in-up delay-400 flex flex-wrap justify-center gap-4 md:gap-8 mb-10">
-              {[
-                {
-                  icon: "🎓",
-                  value: "5,000+",
-                  label: "Students Enrolled",
-                  color: "text-[#4F46E5]",
-                },
-                {
-                  icon: "🏛️",
-                  value: "25+",
-                  label: "Universities",
-                  color: "text-[#0EA5E9]",
-                },
-                {
-                  icon: "📚",
-                  value: "120+",
-                  label: "Courses",
-                  color: "text-[#10B981]",
-                },
-                {
-                  icon: "⭐",
-                  value: "4.9",
-                  label: "Avg Rating",
-                  color: "text-[#F59E0B]",
-                },
-              ].map((s) => (
-                <div
-                  key={s.label}
-                  className="flex items-center gap-2 px-4 py-2.5 bg-white/70 backdrop-blur-sm rounded-2xl border border-white/80 shadow-sm"
-                >
-                  <span className="text-xl">{s.icon}</span>
-                  <div className="text-left">
-                    <p className={`text-sm font-extrabold leading-none ${s.color}`}>
-                      {s.value}
-                    </p>
-                    <p className="text-xs text-[#6E6E73] mt-0.5">{s.label}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
             {/* Trust badges */}
-            <div className="animate-fade-in-up delay-500 flex flex-wrap justify-center gap-3 text-[#6E6E73] font-medium text-sm">
+            <div className="animate-fade-in-up delay-400 flex flex-wrap gap-2.5">
               {[
-                {
-                  icon: "✅",
-                  text: "UGC & DEB Approved",
-                  color: "text-[#10B981]",
-                },
-                {
-                  icon: "🎯",
-                  text: "Expert Counselors",
-                  color: "text-[#4F46E5]",
-                },
-                {
-                  icon: "💼",
-                  text: "100% Placement Support",
-                  color: "text-[#0EA5E9]",
-                },
-                {
-                  icon: "🆓",
-                  text: "Free Consultation",
-                  color: "text-[#F59E0B]",
-                },
-              ].map((b) => (
+                { Icon: ShieldCheck, text: "UGC & DEB Approved" },
+                { Icon: Target, text: "Expert Counselors" },
+                { Icon: Gift, text: "Free Consultation" },
+              ].map(({ Icon, text }) => (
                 <span
-                  key={b.text}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/60 border border-white/80 text-xs font-medium text-[#6E6E73]"
+                  key={text}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/70 border border-white/80 text-xs font-medium text-[#3A3A3C] shadow-sm"
                 >
-                  <span>{b.icon}</span>
-                  {b.text}
+                  <Icon className="w-3.5 h-3.5 text-[#4F46E5]" />
+                  {text}
                 </span>
               ))}
             </div>
@@ -459,10 +343,10 @@ export default function Home() {
           </ScrollReveal>
 
           {/* Bento Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:grid-rows-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {/* Large card — University Admissions */}
             <ScrollReveal
-              className="md:col-span-2 md:row-span-2"
+              className="md:col-span-2"
               delay={0}
             >
               <Link href="/admissions" className="block group h-full">
@@ -512,7 +396,7 @@ export default function Home() {
                     </h3>
                     <p className="text-[#6E6E73] mb-6 leading-relaxed">
                       Expert guidance for UG, PG, MBA, and Diploma programs at
-                      India's top universities. End-to-end support from selection
+                      India&apos;s top universities. End-to-end support from selection
                       to enrollment.
                     </p>
 
@@ -587,65 +471,8 @@ export default function Home() {
               </Link>
             </ScrollReveal>
 
-            {/* Eduthalim card */}
-            <ScrollReveal delay={120}>
-              <Link href="/eduthalim" className="block group h-full">
-                <div className="relative overflow-hidden rounded-3xl border border-[#E5E5EA] card-hover h-full min-h-[160px]"
-                  style={{
-                    background: "linear-gradient(135deg, #FFF3E0 0%, #FFE4B8 100%)",
-                  }}
-                >
-                  <div
-                    className="absolute -top-10 -right-10 w-40 h-40 rounded-full opacity-40 blur-xl"
-                    style={{
-                      background: "radial-gradient(circle, #F59E0B, transparent)",
-                    }}
-                  />
-                  <div className="relative z-10 p-7">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#F59E0B] to-[#D97706] flex items-center justify-center mb-4 shadow-lg shadow-[#F59E0B]/25">
-                      <svg
-                        className="w-6 h-6 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                        />
-                      </svg>
-                    </div>
-                    <h3 className="text-xl font-bold text-[#1D1D1F] mb-1.5">
-                      Eduthalim Degree
-                    </h3>
-                    <p className="text-[#6E6E73] text-sm mb-4 leading-relaxed">
-                      10th, 12th, and Degree programs to bridge educational gaps.
-                    </p>
-                    <div className="flex gap-2 flex-wrap mb-4">
-                      {["10th", "+1/+2", "Degree"].map((t) => (
-                        <span
-                          key={t}
-                          className="px-2.5 py-1 bg-[#F59E0B]/15 text-[#D97706] rounded-lg text-xs font-semibold"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                    <span className="font-semibold text-[#D97706] text-sm flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
-                      Learn More
-                      <svg className="w-4 h-4 cta-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            </ScrollReveal>
-
             {/* Montessori card */}
-            <ScrollReveal delay={200}>
+            <ScrollReveal delay={120}>
               <Link href="/montessori" className="block group h-full">
                 <div className="relative overflow-hidden rounded-3xl border border-[#E5E5EA] card-hover h-full min-h-[160px]"
                   style={{
@@ -768,7 +595,7 @@ export default function Home() {
                 color: "#4F46E5",
                 colorLight: "#EEF2FF",
                 desc: "Speak with our expert counselors about your goals, qualifications, and preferred programs.",
-                emoji: "💬",
+                Icon: MessageCircle,
               },
               {
                 step: "02",
@@ -776,7 +603,7 @@ export default function Home() {
                 color: "#0EA5E9",
                 colorLight: "#E0F7FF",
                 desc: "We present the best-matched universities and courses based on your profile and aspirations.",
-                emoji: "🏛️",
+                Icon: Landmark,
               },
               {
                 step: "03",
@@ -784,7 +611,7 @@ export default function Home() {
                 color: "#10B981",
                 colorLight: "#E8FAF0",
                 desc: "We handle all paperwork, document verification, and submission to ensure smooth enrollment.",
-                emoji: "📝",
+                Icon: FileCheck,
               },
               {
                 step: "04",
@@ -792,9 +619,9 @@ export default function Home() {
                 color: "#F59E0B",
                 colorLight: "#FFFBEB",
                 desc: "With ongoing support, placement assistance, and mentoring — we stay with you till you succeed.",
-                emoji: "🚀",
+                Icon: Rocket,
               },
-            ].map(({ step, title, color, colorLight, desc, emoji }, i) => (
+            ].map(({ step, title, color, colorLight, desc, Icon }, i) => (
               <ScrollReveal key={step} delay={i * 100}>
                 <div
                   className="rounded-2xl p-7 border border-[#E5E5EA] card-hover relative overflow-hidden h-full"
@@ -810,10 +637,10 @@ export default function Home() {
 
                   <div className="relative z-10">
                     <div
-                      className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 text-2xl shadow-sm"
+                      className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 shadow-sm"
                       style={{ background: `${color}20` }}
                     >
-                      {emoji}
+                      <Icon className="w-6 h-6" style={{ color }} />
                     </div>
                     <span
                       className="text-xs font-bold tracking-widest uppercase block mb-1"
@@ -892,29 +719,56 @@ export default function Home() {
       {/* ══════════════════════ WHY CHOOSE US ══════════════════════ */}
       <section className="py-20 md:py-28 hero-mesh-bg">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <ScrollReveal className="text-center mb-12">
-            <span className="section-label-purple mb-4 inline-flex">Why IODE?</span>
+          <ScrollReveal className="text-center mb-14">
+            <span className="section-label-purple mb-4 inline-flex">Why Vidyavasal?</span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#1D1D1F] mt-3">
-              Why 5,000+ students chose <span className="gradient-text-vivid">IODE</span>
+              Why 5,000+ students chose <span className="gradient-text-vivid">Vidyavasal</span>
             </h2>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {features.map((f, i) => (
-              <ScrollReveal key={f.title} delay={i * 80}>
-                <div className="bg-white rounded-2xl p-6 border border-[#E5E5EA] card-hover flex gap-4 items-start">
-                  <div className="w-12 h-12 rounded-xl bg-[#F0EBFF] flex items-center justify-center text-2xl shrink-0">
-                    {f.icon}
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Image */}
+            <ScrollReveal className="lg:col-span-5">
+              <div className="relative rounded-[2rem] overflow-hidden shadow-2xl shadow-[#4F46E5]/10 border-4 border-white aspect-[4/5]">
+                <Image
+                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
+                  alt="Students learning together with expert guidance"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1a0a3e]/40 via-transparent to-transparent" />
+                {/* Overlay stat card */}
+                <div className="absolute bottom-5 left-5 right-5 bg-white/95 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-4 shadow-lg">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] flex items-center justify-center text-white shrink-0">
+                    <Award className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-[#1D1D1F] mb-1">
-                      {f.title}
-                    </h3>
-                    <p className="text-[#6E6E73] text-sm leading-relaxed">{f.desc}</p>
+                    <p className="font-extrabold text-[#1D1D1F] text-lg leading-none">100% Success</p>
+                    <p className="text-[#6E6E73] text-xs mt-1">Admission track record</p>
                   </div>
                 </div>
-              </ScrollReveal>
-            ))}
+              </div>
+            </ScrollReveal>
+
+            {/* Features */}
+            <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
+              {features.map((f, i) => (
+                <ScrollReveal key={f.title} delay={i * 80}>
+                  <div className="bg-white rounded-2xl p-6 border border-[#E5E5EA] card-hover flex gap-4 items-start h-full">
+                    <div className="w-12 h-12 rounded-xl bg-[#F0EBFF] flex items-center justify-center shrink-0">
+                      <f.Icon className="w-6 h-6 text-[#4F46E5]" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold text-[#1D1D1F] mb-1">
+                        {f.title}
+                      </h3>
+                      <p className="text-[#6E6E73] text-sm leading-relaxed">{f.desc}</p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -923,14 +777,15 @@ export default function Home() {
       <section className="py-20 md:py-28 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <ScrollReveal className="text-center mb-14">
-            <span className="section-label-purple mb-4 inline-flex">
-              ⭐ Student Stories
+            <span className="section-label-purple mb-4 inline-flex items-center gap-1.5">
+              <Star className="w-4 h-4 fill-current" />
+              Student Stories
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#1D1D1F] mt-3">
               Real students, <span className="gradient-text-vivid">real results</span>
             </h2>
             <p className="text-[#6E6E73] max-w-xl mx-auto text-base mt-4">
-              Hear from students who transformed their careers with IODE's guidance.
+              Hear from students who transformed their careers with Vidyavasal&apos;s guidance.
             </p>
           </ScrollReveal>
 
@@ -967,12 +822,18 @@ export default function Home() {
                   {/* Author */}
                   <div className="flex items-center gap-3 pt-5 border-t border-[#F5F5F7]">
                     <div
-                      className="w-11 h-11 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-md"
+                      className="relative w-11 h-11 rounded-full overflow-hidden shrink-0 shadow-md ring-2 ring-white"
                       style={{
                         background: `linear-gradient(135deg, ${t.gradFrom}, ${t.gradTo})`,
                       }}
                     >
-                      {t.initials}
+                      <Image
+                        src={t.photo}
+                        alt={t.name}
+                        fill
+                        sizes="44px"
+                        className="object-cover"
+                      />
                     </div>
                     <div>
                       <p className="font-semibold text-[#1D1D1F] text-sm">{t.name}</p>
@@ -1032,7 +893,7 @@ export default function Home() {
                 </h2>
                 <p className="text-white/60 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
                   Join 5,000+ students who have transformed their futures with
-                  IODE&apos;s expert admission guidance. Free consultation — no
+                  Vidyavasal&apos;s expert admission guidance. Free consultation — no
                   obligation.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -1,9 +1,18 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import {
+  GraduationCap,
+  Sprout,
+  School,
+  MessageCircle,
+  HeartHandshake,
+  BookOpen,
+  Briefcase,
+} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Montessori Counseling & Training",
-  description: "Build a rewarding career in early childhood education with IODE's Montessori TTC programs. Recognized training for aspiring Montessori teachers.",
+  description: "Build a rewarding career in early childhood education with Vidyavasal's Montessori TTC programs. Recognized training for aspiring Montessori teachers.",
 };
 
 const modules = [
@@ -40,12 +49,12 @@ const modules = [
 ];
 
 const careers = [
-  { title: 'Montessori Teacher', where: 'Preschools & Kindergartens', icon: '👩‍🏫' },
-  { title: 'Preschool Director', where: 'Own school / institution', icon: '🏫' },
-  { title: 'Child Counselor', where: 'Schools & Child care centers', icon: '💬' },
-  { title: 'Special Educator', where: 'Inclusion schools & NGOs', icon: '🌱' },
-  { title: 'Educational Consultant', where: 'Curriculum development', icon: '📚' },
-  { title: 'Corporate Trainer', where: 'Early childhood companies', icon: '💼' },
+  { title: 'Montessori Teacher', where: 'Preschools & Kindergartens', Icon: GraduationCap },
+  { title: 'Preschool Director', where: 'Own school / institution', Icon: School },
+  { title: 'Child Counselor', where: 'Schools & Child care centers', Icon: MessageCircle },
+  { title: 'Special Educator', where: 'Inclusion schools & NGOs', Icon: HeartHandshake },
+  { title: 'Educational Consultant', where: 'Curriculum development', Icon: BookOpen },
+  { title: 'Corporate Trainer', where: 'Early childhood companies', Icon: Briefcase },
 ];
 
 export default function MontessoriPage() {
@@ -65,7 +74,7 @@ export default function MontessoriPage() {
             &amp; <span className="gradient-text-purple">Teacher Training</span>
           </h1>
           <p className="text-lg md:text-xl text-[#6E6E73] mb-8 leading-relaxed max-w-2xl mx-auto">
-            Shape the future by nurturing young minds. Become a certified Montessori educator with IODE&apos;s comprehensive training and counseling programs.
+            Shape the future by nurturing young minds. Become a certified Montessori educator with Vidyavasal&apos;s comprehensive training and counseling programs.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/contact" className="px-8 py-4 rounded-full bg-gradient-to-r from-[#34C759] to-[#00A844] text-white font-bold text-base shadow-lg shadow-[#34C759]/20 btn-press flex items-center justify-center gap-2">
@@ -125,7 +134,9 @@ export default function MontessoriPage() {
               <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full opacity-20"
                 style={{background: 'radial-gradient(circle, #34C759, transparent)'}}></div>
               <div className="relative z-10">
-                <div className="text-5xl mb-4">🌱</div>
+                <div className="w-14 h-14 rounded-2xl bg-[#34C759]/15 text-[#34C759] flex items-center justify-center mb-4">
+                  <Sprout className="w-7 h-7" />
+                </div>
                 <h3 className="text-xl font-bold text-[#1D1D1F] mb-3">Montessori TTC Certificate</h3>
                 <p className="text-[#6E6E73] text-sm leading-relaxed mb-4">
                   Our Teacher Training Certificate (TTC) program is designed for aspiring educators with a passion for early childhood education. No prior teaching experience required.
@@ -180,7 +191,9 @@ export default function MontessoriPage() {
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {careers.map((c) => (
               <div key={c.title} className="bg-white rounded-2xl p-5 border border-[#E5E5EA] university-card text-center">
-                <div className="text-3xl mb-3">{c.icon}</div>
+                <div className="w-12 h-12 rounded-xl bg-[#E8FAF0] text-[#10B981] flex items-center justify-center mx-auto mb-3">
+                  <c.Icon className="w-6 h-6" />
+                </div>
                 <p className="font-semibold text-[#1D1D1F] text-sm">{c.title}</p>
                 <p className="text-[#AEAEB2] text-xs mt-1">{c.where}</p>
               </div>
@@ -195,9 +208,11 @@ export default function MontessoriPage() {
           <div className="rounded-3xl p-10 relative overflow-hidden" style={{background: 'linear-gradient(135deg, #34C759 0%, #00A844 100%)'}}>
             <div className="absolute inset-0 dot-pattern opacity-20"></div>
             <div className="relative z-10">
-              <div className="text-4xl mb-4">🎓</div>
+              <div className="w-14 h-14 rounded-2xl bg-white/20 text-white flex items-center justify-center mb-4">
+                <GraduationCap className="w-7 h-7" />
+              </div>
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Begin your Montessori journey</h2>
-              <p className="text-white/80 mb-8">Join 500+ certified Montessori educators who started their journey with IODE. Free consultation available.</p>
+              <p className="text-white/80 mb-8">Join 500+ certified Montessori educators who started their journey with Vidyavasal. Free consultation available.</p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link href="/contact" className="px-8 py-4 rounded-full bg-white text-[#00A844] font-bold hover:bg-green-50 transition-colors btn-press flex items-center justify-center gap-2">
                   Enroll Now

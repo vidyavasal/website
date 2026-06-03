@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "University Admissions",
-  description: "Get admitted to top universities across India with IODE's expert admission guidance. UG, PG, MBA, Diploma programs from 25+ UGC-recognized universities.",
+  description: "Get admitted to top universities across India with Vidyavasal's expert admission guidance. UG, PG, MBA, Diploma programs from 25+ UGC-recognized universities.",
 };
 
 const admissionsJsonLd = {
@@ -12,7 +12,7 @@ const admissionsJsonLd = {
   "name": "University Admissions Guidance",
   "provider": {
     "@type": "EducationalOrganization",
-    "name": "IODE - Institute of Distance Education"
+    "name": "Vidyavasal"
   },
   "description": "Expert guidance for UG, PG, MBA, and Diploma admissions to top Indian universities",
   "areaServed": "IN",

@@ -21,10 +21,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const data = await getCourseBySlug(slug, courseSlug);
   if (!data) return {};
   return {
-    title: `${data.name} — ${data.university.name} | Fees, Eligibility | IODE`,
-    description: `${data.name} from ${data.university.name}: fee structure ₹${data.feeStructure?.totalFee ? Number(data.feeStructure.totalFee).toLocaleString("en-IN") : "—"}, eligibility, duration, and online admission through IODE.`,
+    title: `${data.name} — ${data.university.name} | Fees, Eligibility | Vidyavasal`,
+    description: `${data.name} from ${data.university.name}: fee structure ₹${data.feeStructure?.totalFee ? Number(data.feeStructure.totalFee).toLocaleString("en-IN") : "—"}, eligibility, duration, and online admission through Vidyavasal.`,
     openGraph: {
-      title: `${data.name} — ${data.university.name} | IODE`,
+      title: `${data.name} — ${data.university.name} | Vidyavasal`,
       description: data.description ?? `Get details about ${data.name} at ${data.university.name}.`,
       images: data.bannerImage ? [{ url: data.bannerImage }] : [],
     },

@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { MapPin } from "lucide-react";
 import { getUniversities } from "@/lib/db/queries";
 
 export const metadata: Metadata = {
-  title: "Universities — Online & Distance Education | IODE",
-  description: "Explore top universities offering online, distance and ODL degree programs in India. Compare fees, courses and apply through IODE.",
+  title: "Universities — Online & Distance Education | Vidyavasal",
+  description: "Explore top universities offering online, distance and ODL degree programs in India. Compare fees, courses and apply through Vidyavasal.",
   openGraph: {
-    title: "Universities — Online & Distance Education | IODE",
+    title: "Universities — Online & Distance Education | Vidyavasal",
     description: "Explore top universities offering online and distance education programs in India.",
     type: "website",
   },
@@ -45,7 +46,7 @@ export default async function UniversitiesPage() {
             Top Universities for Online & Distance Education
           </h1>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            UGC-approved programs from India's leading universities. Compare courses, fees, and apply through IODE.
+            UGC-approved programs from India's leading universities. Compare courses, fees, and apply through Vidyavasal.
           </p>
         </div>
       </section>
@@ -89,8 +90,9 @@ export default async function UniversitiesPage() {
                   {uni.name}
                 </h2>
                 {(uni.city || uni.state) && (
-                  <p className="text-sm text-gray-500 mb-3">
-                    📍 {[uni.city, uni.state].filter(Boolean).join(", ")}
+                  <p className="text-sm text-gray-500 mb-3 flex items-center gap-1">
+                    <MapPin className="w-3.5 h-3.5 shrink-0" />
+                    {[uni.city, uni.state].filter(Boolean).join(", ")}
                   </p>
                 )}
                 <div className="flex items-center justify-between">
