@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { MapPin, Phone } from "lucide-react";
 import { getUniversityBySlug, getUniversities } from "@/lib/db/queries";
 import type { UniversityHighlights } from "@/components/admin/HighlightsEditor";
 
@@ -93,7 +94,7 @@ export default async function UniversityPage({ params }: { params: Promise<{ slu
           <div className="absolute bottom-0 left-0 p-6">
             <h1 className="text-white text-2xl sm:text-3xl font-bold">{uni.name}</h1>
             {(uni.city || uni.state) && (
-              <p className="text-white/80 text-sm mt-1">📍 {[uni.city, uni.state].filter(Boolean).join(", ")}</p>
+              <p className="text-white/80 text-sm mt-1 flex items-center gap-1"><MapPin className="w-3.5 h-3.5 shrink-0" />{[uni.city, uni.state].filter(Boolean).join(", ")}</p>
             )}
           </div>
         </div>
@@ -145,8 +146,8 @@ export default async function UniversityPage({ params }: { params: Promise<{ slu
               <Link href="/contact" className="block w-full text-center bg-white text-blue-600 font-semibold text-sm py-2.5 rounded-lg hover:bg-blue-50 transition-colors">
                 Enquire Now
               </Link>
-              <Link href="tel:+919744770000" className="block w-full text-center border border-white/40 text-white text-sm py-2.5 rounded-lg mt-2 hover:bg-white/10 transition-colors">
-                📞 Call Us
+              <Link href="tel:+919744770000" className="flex items-center justify-center gap-1.5 w-full text-center border border-white/40 text-white text-sm py-2.5 rounded-lg mt-2 hover:bg-white/10 transition-colors">
+                <Phone className="w-4 h-4" /> Call Us
               </Link>
             </div>
 

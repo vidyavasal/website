@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { MapPin } from "lucide-react";
 import { getUniversities } from "@/lib/db/queries";
 
 export const metadata: Metadata = {
@@ -89,8 +90,9 @@ export default async function UniversitiesPage() {
                   {uni.name}
                 </h2>
                 {(uni.city || uni.state) && (
-                  <p className="text-sm text-gray-500 mb-3">
-                    📍 {[uni.city, uni.state].filter(Boolean).join(", ")}
+                  <p className="text-sm text-gray-500 mb-3 flex items-center gap-1">
+                    <MapPin className="w-3.5 h-3.5 shrink-0" />
+                    {[uni.city, uni.state].filter(Boolean).join(", ")}
                   </p>
                 )}
                 <div className="flex items-center justify-between">

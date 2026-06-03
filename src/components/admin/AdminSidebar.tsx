@@ -1,12 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import {
+  LayoutDashboard,
+  Building2,
+  BookOpen,
+  ExternalLink,
+  LogOut,
+} from "lucide-react";
 
 const navItems = [
-  { href: "/admin", label: "Dashboard", icon: "🏠", exact: true },
-  { href: "/admin/universities", label: "Universities", icon: "🏫" },
-  { href: "/admin/courses", label: "Courses", icon: "📚" },
+  { href: "/admin", label: "Dashboard", Icon: LayoutDashboard, exact: true },
+  { href: "/admin/universities", label: "Universities", Icon: Building2 },
+  { href: "/admin/courses", label: "Courses", Icon: BookOpen },
 ];
 
 export default function AdminSidebar() {
@@ -20,21 +28,31 @@ export default function AdminSidebar() {
   }
 
   return (
-    <aside className="w-56 bg-white border-r border-gray-200 flex flex-col shrink-0">
+    <aside className="w-60 bg-white border-r border-gray-200 flex flex-col shrink-0 sticky top-0 h-screen">
       {/* Logo */}
-      <div className="px-4 py-5 border-b border-gray-200">
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 bg-blue-600 rounded-lg flex items-center justify-center">
-            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
-            </svg>
-          </div>
-          <span className="font-bold text-gray-900 text-sm">IODE Admin</span>
-        </div>
+      <div className="px-5 py-5 border-b border-gray-100">
+        <Link href="/admin" className="flex items-center gap-2.5">
+          <Image
+            src="/logo.svg"
+            alt="Vidyavasal"
+            width={28}
+            height={28}
+            className="h-7 w-auto object-contain"
+          />
+          <span className="font-poppins font-semibold text-gray-900 text-base tracking-tight">
+            vidyavasal
+          </span>
+          <span className="ml-auto text-[0.6rem] font-semibold uppercase tracking-wider text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded">
+            Admin
+          </span>
+        </Link>
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 px-3 py-4 space-y-0.5">
+      <nav className="flex-1 px-3 py-4 space-y-1">
+        <p className="px-3 mb-1 text-[0.65rem] font-semibold uppercase tracking-wider text-gray-400">
+          Manage
+        </p>
         {navItems.map((item) => {
           const isActive = item.exact
             ? pathname === item.href
@@ -45,11 +63,11 @@ export default function AdminSidebar() {
               href={item.href}
               className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                 isActive
-                  ? "bg-blue-50 text-blue-700"
+                  ? "bg-[#EEF2FF] text-[#4F46E5]"
                   : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
               }`}
             >
-              <span className="text-base">{item.icon}</span>
+              <item.Icon className="w-[18px] h-[18px]" />
               {item.label}
             </Link>
           );
@@ -57,19 +75,19 @@ export default function AdminSidebar() {
       </nav>
 
       {/* Footer */}
-      <div className="px-3 pb-4 space-y-0.5 border-t border-gray-200 pt-3">
+      <div className="px-3 pb-4 space-y-1 border-t border-gray-100 pt-3">
         <Link
           href="/"
           target="_blank"
           className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-700 transition-colors"
         >
-          <span>↗</span> View Site
+          <ExternalLink className="w-[18px] h-[18px]" /> View Site
         </Link>
         <button
           onClick={handleLogout}
           className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-500 hover:bg-red-50 hover:text-red-600 transition-colors"
         >
-          <span>🚪</span> Logout
+          <LogOut className="w-[18px] h-[18px]" /> Logout
         </button>
       </div>
     </aside>
