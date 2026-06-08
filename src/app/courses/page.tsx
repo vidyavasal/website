@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { CoursesDashboard } from "@/components/CoursesDashboard";
 import { getCourses, getAdminStats } from "@/lib/db/queries";
 import Link from "next/link";
+import JsonLd from "@/components/JsonLd";
+import { itemListLd, breadcrumbLd } from "@/lib/seo/jsonld";
 
 export const revalidate = 3600; // ISR: rebuild every hour
 
@@ -9,6 +11,7 @@ export const metadata: Metadata = {
   title: "Browse Courses & Universities | Vidyavasal",
   description:
     "Search 100+ courses across UGC-recognized universities. Filter by degree type, delivery mode, and fee range to find your perfect online or distance program.",
+  alternates: { canonical: "/courses" },
   openGraph: {
     title: "Browse Courses & Universities | Vidyavasal",
     description:
@@ -20,26 +23,25 @@ export const metadata: Metadata = {
 export default async function CoursesPage() {
   const [courses, stats] = await Promise.all([getCourses(), getAdminStats()]);
 
-  const coursesJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "University Courses at Vidyavasal",
-    description:
-      "Browse distance and online courses from top Indian universities",
-    numberOfItems: courses.length,
-    itemListElement: courses.slice(0, 20).map((c, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      name: `${c.name}${c.universityName ? ` - ${c.universityName}` : ""}`,
-      url:
-        c.universitySlug && c.slug
-          ? `https://iode.in/universities/${c.universitySlug}/${c.slug}`
-          : undefined,
-    })),
-  };
-
   return (
     <div>
+      <JsonLd
+        data={[
+          itemListLd(
+            "University Courses & Fees at Vidyavasal",
+            courses
+              .filter((c) => c.universitySlug && c.slug)
+              .map((c) => ({
+                name: `${c.name}${c.universityName ? ` — ${c.universityName}` : ""}`,
+                path: `/universities/${c.universitySlug}/${c.slug}`,
+              }))
+          ),
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "Courses", path: "/courses" },
+          ]),
+        ]}
+      />
       {/* ── Header ── */}
       <section className="hero-mesh-bg pt-10 pb-8 md:pt-16 md:pb-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
@@ -144,11 +146,6 @@ export default async function CoursesPage() {
           </div>
         </div>
       </section>
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(coursesJsonLd) }}
-      />
     </div>
   );
 }
