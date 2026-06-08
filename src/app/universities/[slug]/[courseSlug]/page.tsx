@@ -7,6 +7,9 @@ import remarkGfm from "remark-gfm";
 import { getCourseBySlug } from "@/lib/db/queries";
 import JsonLd from "@/components/JsonLd";
 import FaqAccordion from "@/components/FaqAccordion";
+import EnquiryForm from "@/components/EnquiryForm";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import EntityView from "@/components/EntityView";
 import {
   courseLd,
   breadcrumbLd,
@@ -83,6 +86,8 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
           ]),
         ]}
       />
+      <EntityView event="view_course" entityType="course" entityId={data.id} />
+      {fee && <EntityView event="view_fee" entityType="course" entityId={data.id} />}
 
       {/* Breadcrumb */}
       <div className="max-w-6xl mx-auto px-4 pt-6 pb-3">
@@ -194,13 +199,25 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
                     </div>
                   )}
                 </div>
-                <div className="px-4 pb-4">
-                  <Link href="/contact" className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm py-2.5 rounded-lg transition-colors">
-                    Apply Now / Enquire
-                  </Link>
-                </div>
               </div>
             )}
+
+            {/* Lead capture — fee details / enquiry */}
+            <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+              <h4 className="text-sm font-semibold text-gray-900 mb-3">
+                Get Fee Details & Apply
+              </h4>
+              <EnquiryForm
+                source="course_enquiry"
+                universityId={data.university.id}
+                courseId={data.id}
+                context={`${data.name} at ${data.university.name}`}
+                compact
+              />
+              <div className="mt-2">
+                <WhatsAppButton context={`${data.name} at ${data.university.name}`} />
+              </div>
+            </div>
 
             {/* University card */}
             <div className="bg-white border border-gray-200 rounded-xl p-4">

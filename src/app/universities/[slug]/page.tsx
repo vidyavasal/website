@@ -4,12 +4,15 @@ import Image from "next/image";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { MapPin, Phone } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { getUniversityBySlug, getUniversities } from "@/lib/db/queries";
 import type { UniversityHighlights } from "@/components/admin/HighlightsEditor";
 import JsonLd from "@/components/JsonLd";
 import { universityLd, breadcrumbLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/site";
+import EnquiryForm from "@/components/EnquiryForm";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import EntityView from "@/components/EntityView";
 
 const PLACEHOLDER = "https://placehold.co/1200x400/e8f0fe/1a56db?text=University";
 
@@ -75,6 +78,7 @@ export default async function UniversityPage({ params }: { params: Promise<{ slu
           ]),
         ]}
       />
+      <EntityView event="view_university" entityType="university" entityId={uni.id} />
 
       {/* Breadcrumb */}
       <div className="max-w-6xl mx-auto px-4 pt-6 pb-2">
@@ -148,16 +152,19 @@ export default async function UniversityPage({ params }: { params: Promise<{ slu
 
           {/* Sidebar */}
           <div className="space-y-4">
-            {/* Enquire CTA */}
-            <div className="bg-blue-600 text-white rounded-xl p-5">
-              <h3 className="font-bold text-base mb-1">Get Free Counselling</h3>
-              <p className="text-blue-100 text-sm mb-4">Talk to our experts about {uni.shortName ?? uni.name} admissions.</p>
-              <Link href="/contact" className="block w-full text-center bg-white text-blue-600 font-semibold text-sm py-2.5 rounded-lg hover:bg-blue-50 transition-colors">
-                Enquire Now
-              </Link>
-              <Link href="tel:+919744770000" className="flex items-center justify-center gap-1.5 w-full text-center border border-white/40 text-white text-sm py-2.5 rounded-lg mt-2 hover:bg-white/10 transition-colors">
-                <Phone className="w-4 h-4" /> Call Us
-              </Link>
+            {/* Enquire CTA — lead capture */}
+            <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+              <h3 className="font-bold text-base text-gray-900 mb-1">Get Free Counselling</h3>
+              <p className="text-gray-500 text-sm mb-4">Talk to our experts about {uni.shortName ?? uni.name} admissions.</p>
+              <EnquiryForm
+                source="university_enquiry"
+                universityId={uni.id}
+                context={uni.name}
+                compact
+              />
+              <div className="mt-2">
+                <WhatsAppButton context={`admissions at ${uni.name}`} />
+              </div>
             </div>
 
             {/* Quick info */}

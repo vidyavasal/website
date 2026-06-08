@@ -206,3 +206,129 @@ export type CourseFeeStructure = typeof courseFeeStructures.$inferSelect;
 export type NewCourseFeeStructure = typeof courseFeeStructures.$inferInsert;
 export type CourseFeeBreakdown = typeof courseFeeBreakdowns.$inferSelect;
 export type NewCourseFeeBreakdown = typeof courseFeeBreakdowns.$inferInsert;
+
+// ============================================
+// Analytics / Tracking (owned by the main site)
+// --------------------------------------------
+// Anonymous-first visitor analytics. The tracker panel READS these via its
+// external mirror. We never store raw IPs — only coarse geo from edge headers.
+// ============================================
+
+// A unique browser, identified by an httpOnly cookie. Identity stays anonymous
+// until the visitor submits a lead, at which point the lead links back here.
+export const visitors = pgTable(
+  "visitors",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    country: varchar("country", { length: 2 }),
+    city: varchar("city", { length: 120 }),
+    region: varchar("region", { length: 120 }),
+    device: varchar("device", { length: 20 }), // mobile | tablet | desktop
+    browser: varchar("browser", { length: 60 }),
+    os: varchar("os", { length: 60 }),
+    referrer: text("referrer"),
+    landingPath: text("landing_path"),
+    utmSource: varchar("utm_source", { length: 120 }),
+    utmMedium: varchar("utm_medium", { length: 120 }),
+    utmCampaign: varchar("utm_campaign", { length: 120 }),
+    visitCount: integer("visit_count").default(1),
+    firstSeen: timestamp("first_seen").defaultNow(),
+    lastSeen: timestamp("last_seen").defaultNow(),
+  },
+  (table) => [
+    index("idx_visitors_last_seen").on(table.lastSeen),
+    index("idx_visitors_utm_source").on(table.utmSource),
+  ]
+);
+
+// One row per page view / tracked event. entityType/entityId tie a view to a
+// university or course so the panel can rank "most viewed" and "fee-page views".
+export const pageViews = pgTable(
+  "page_views",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    visitorId: uuid("visitor_id").references(() => visitors.id, {
+      onDelete: "cascade",
+    }),
+    event: varchar("event", { length: 40 }).default("page_view"),
+    path: text("path"),
+    entityType: varchar("entity_type", { length: 20 }), // university | course | blog
+    entityId: uuid("entity_id"),
+    referrer: text("referrer"),
+    createdAt: timestamp("created_at").defaultNow(),
+  },
+  (table) => [
+    index("idx_page_views_visitor").on(table.visitorId),
+    index("idx_page_views_entity").on(table.entityType, table.entityId),
+    index("idx_page_views_created").on(table.createdAt),
+    index("idx_page_views_event").on(table.event),
+  ]
+);
+
+// Captured enquiries. visitorId links a real identity back to the anonymous
+// browsing history. Mirrors what later becomes a tracker_students admission.
+export const leads = pgTable(
+  "leads",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    name: varchar("name", { length: 255 }),
+    phone: varchar("phone", { length: 30 }),
+    email: varchar("email", { length: 255 }),
+    message: text("message"),
+    source: varchar("source", { length: 60 }), // enquiry_form | whatsapp | brochure | call
+    status: varchar("status", { length: 30 }).default("new"), // new | contacted | converted | lost
+    visitorId: uuid("visitor_id").references(() => visitors.id, {
+      onDelete: "set null",
+    }),
+    universityId: uuid("university_id").references(() => universities.id, {
+      onDelete: "set null",
+    }),
+    courseId: uuid("course_id").references(() => courses.id, {
+      onDelete: "set null",
+    }),
+    utmSource: varchar("utm_source", { length: 120 }),
+    utmMedium: varchar("utm_medium", { length: 120 }),
+    utmCampaign: varchar("utm_campaign", { length: 120 }),
+    createdAt: timestamp("created_at").defaultNow(),
+  },
+  (table) => [
+    index("idx_leads_status").on(table.status),
+    index("idx_leads_created").on(table.createdAt),
+    index("idx_leads_visitor").on(table.visitorId),
+    index("idx_leads_phone").on(table.phone),
+  ]
+);
+
+export const visitorsRelations = relations(visitors, ({ many }) => ({
+  pageViews: many(pageViews),
+  leads: many(leads),
+}));
+
+export const pageViewsRelations = relations(pageViews, ({ one }) => ({
+  visitor: one(visitors, {
+    fields: [pageViews.visitorId],
+    references: [visitors.id],
+  }),
+}));
+
+export const leadsRelations = relations(leads, ({ one }) => ({
+  visitor: one(visitors, {
+    fields: [leads.visitorId],
+    references: [visitors.id],
+  }),
+  university: one(universities, {
+    fields: [leads.universityId],
+    references: [universities.id],
+  }),
+  course: one(courses, {
+    fields: [leads.courseId],
+    references: [courses.id],
+  }),
+}));
+
+export type Visitor = typeof visitors.$inferSelect;
+export type NewVisitor = typeof visitors.$inferInsert;
+export type PageView = typeof pageViews.$inferSelect;
+export type NewPageView = typeof pageViews.$inferInsert;
+export type Lead = typeof leads.$inferSelect;
+export type NewLead = typeof leads.$inferInsert;
