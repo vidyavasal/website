@@ -6,6 +6,13 @@ import Footer from "@/components/Footer";
 import SiteShell from "@/components/SiteShell";
 import { SITE_URL, IS_INDEXABLE } from "@/lib/seo/site";
 import { organizationLd, webSiteLd } from "@/lib/seo/jsonld";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import PageTracker from "@/components/PageTracker";
+import CookieConsent from "@/components/CookieConsent";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 const inter = Inter({
   variable: "--font-inter",
@@ -78,6 +85,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable} h-full antialiased scroll-smooth`}>
       <head>
+        {/* Preconnect to the image CDN — banner images are the LCP element */}
+        <link rel="preconnect" href="https://ik.imagekit.io" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://ik.imagekit.io" />
         {siteJsonLd.map((schema, i) => (
           <script
             key={i}
@@ -101,7 +111,13 @@ export default function RootLayout({
         >
           {children}
         </SiteShell>
+        <PageTracker />
+        <CookieConsent />
+        <Analytics />
+        <SpeedInsights />
       </body>
+      {/* GA4 — production only, when a measurement id is configured */}
+      {IS_INDEXABLE && GA_ID ? <GoogleAnalytics gaId={GA_ID} /> : null}
     </html>
   );
 }
