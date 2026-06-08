@@ -10,7 +10,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const postTitle = params["post-title"].replace(/-/g, " ");
 
   return {
-    title: `${postTitle} | IODE Blog`,
+    title: `${postTitle} | Vidyavasal Blog`,
     description: `Read our latest article about ${postTitle}.`,
   };
 }

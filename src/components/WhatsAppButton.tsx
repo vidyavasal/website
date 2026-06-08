@@ -1,6 +1,7 @@
 "use client";
 
 import { track } from "@/lib/analytics";
+import { WHATSAPP_NUMBER } from "@/lib/seo/site";
 
 /**
  * Click-to-chat WhatsApp button with a prefilled, context-aware message.
@@ -17,7 +18,7 @@ export default function WhatsAppButton({
   className?: string;
   children?: React.ReactNode;
 }) {
-  const number = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "");
+  const number = WHATSAPP_NUMBER;
   if (!number) return null;
 
   const text = encodeURIComponent(
