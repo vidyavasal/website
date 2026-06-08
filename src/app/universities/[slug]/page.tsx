@@ -6,7 +6,14 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { MapPin } from "lucide-react";
 import { getUniversityBySlug, getUniversities } from "@/lib/db/queries";
-import type { UniversityHighlights } from "@/components/admin/HighlightsEditor";
+
+type UniversityHighlights = {
+  naac?: string;
+  established?: string;
+  approvals?: string;
+  students?: string;
+  accreditation?: string;
+};
 import JsonLd from "@/components/JsonLd";
 import { universityLd, breadcrumbLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/site";
@@ -145,7 +152,6 @@ export default async function UniversityPage({ params }: { params: Promise<{ slu
             ) : (
               <div className="bg-gray-50 border border-dashed border-gray-300 rounded-xl p-8 text-center text-gray-400">
                 <p className="text-sm">No brochure content yet.</p>
-                <Link href={`/admin/universities`} className="text-blue-500 text-xs hover:underline mt-1 block">Add content in admin →</Link>
               </div>
             )}
           </div>
