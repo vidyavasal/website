@@ -129,7 +129,7 @@ export default async function CoursesPage() {
               </svg>
             </Link>
             <a
-              href="https://wa.me/910000000000"
+              href="https://wa.me/917034760995"
               target="_blank"
               rel="noopener noreferrer"
               className="px-7 py-3.5 rounded-full bg-[#F5F5F7] text-[#1D1D1F] font-semibold hover:bg-[#E8F2FF] hover:text-[#007AFF] transition-colors flex items-center justify-center gap-2"

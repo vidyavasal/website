@@ -917,7 +917,7 @@ export default function Home() {
                     </svg>
                   </Link>
                   <a
-                    href="https://wa.me/910000000000"
+                    href="https://wa.me/917034760995"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-8 py-4 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-bold text-base hover:bg-white/20 transition-colors flex items-center justify-center gap-2"

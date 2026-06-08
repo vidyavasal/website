@@ -37,7 +37,7 @@ export function absoluteUrl(path = "/"): string {
 
 /** WhatsApp number in international format without symbols, e.g. 9198XXXXXXXX. */
 export const WHATSAPP_NUMBER =
-  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "") || "";
+  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "") || "917034760995";
 
 /** Organization identity — reused by metadata and JSON-LD. */
 export const ORG = {
@@ -48,7 +48,7 @@ export const ORG = {
     "Vidyavasal provides expert university admissions guidance, distance & online education programs, and course/fee information across Kerala and India.",
   logo: absoluteUrl("/logo.svg"),
   email: "info@vidyavasal.com",
-  phone: "+91-00000-00000", // TODO: replace with the real admissions number
+  phone: "+91-70347-60995",
   address: {
     region: "Kerala",
     country: "IN",
@@ -56,9 +56,7 @@ export const ORG = {
   languages: ["English", "Malayalam"],
   sameAs: [
     "https://www.facebook.com/vidyavasal",
-    "https://www.instagram.com/vidyavasal",
-    "https://www.linkedin.com/company/vidyavasal",
-    "https://www.youtube.com/@vidyavasal",
+    "https://www.instagram.com/vidya.vasal",
   ],
 } as const;
 

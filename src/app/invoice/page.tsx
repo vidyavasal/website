@@ -25,10 +25,10 @@ export default function ReceiptPage() {
         {/* Header Section */}
         <div className="text-center mb-6 sm:mb-8 border-b-2 border-gray-800 pb-4">
           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-wider uppercase text-gray-900">
-            iode edu
+            Vidyavasal
           </h1>
           <p className="text-xs sm:text-sm text-gray-600 mt-1">
-            Wayanad, Kerala | Ph: +91 98765 43210
+            Kerala, India | Ph: +91 70347 60995
           </p>
         </div>
 

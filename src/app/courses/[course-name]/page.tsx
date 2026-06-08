@@ -10,8 +10,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const courseName = params["course-name"].replace(/-/g, " ").toUpperCase();
 
   return {
-    title: `${courseName} | IODE Courses`,
-    description: `Learn more about the ${courseName} program at Institute of Distance Education.`,
+    title: `${courseName} | Vidyavasal Courses`,
+    description: `Learn more about the ${courseName} program at Vidyavasal.`,
   };
 }
 
