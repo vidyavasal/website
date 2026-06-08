@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { getUniversities } from "@/lib/db/queries";
+import JsonLd from "@/components/JsonLd";
+import { itemListLd, breadcrumbLd } from "@/lib/seo/jsonld";
 
 export const metadata: Metadata = {
   title: "Universities — Online & Distance Education | Vidyavasal",
@@ -19,25 +21,22 @@ const PLACEHOLDER = "https://placehold.co/800x450/e8f0fe/1a56db?text=University"
 export default async function UniversitiesPage() {
   const universities = await getUniversities();
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Universities Offering Online & Distance Education",
-    itemListElement: universities.map((u, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      item: {
-        "@type": "EducationalOrganization",
-        name: u.name,
-        url: `https://iode.in/universities/${u.slug}`,
-        address: { "@type": "PostalAddress", addressRegion: u.state ?? "", addressCountry: "IN" },
-      },
-    })),
-  };
-
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd
+        data={[
+          itemListLd(
+            "Universities Offering Online & Distance Education",
+            universities
+              .filter((u) => u.slug)
+              .map((u) => ({ name: u.name, path: `/universities/${u.slug}` }))
+          ),
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "Universities", path: "/universities" },
+          ]),
+        ]}
+      />
 
       {/* Hero */}
       <section className="bg-gradient-to-br from-blue-50 to-indigo-50 py-14 px-4">
@@ -46,7 +45,7 @@ export default async function UniversitiesPage() {
             Top Universities for Online & Distance Education
           </h1>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            UGC-approved programs from India's leading universities. Compare courses, fees, and apply through Vidyavasal.
+            UGC-approved programs from India&apos;s leading universities. Compare courses, fees, and apply through Vidyavasal.
           </p>
         </div>
       </section>

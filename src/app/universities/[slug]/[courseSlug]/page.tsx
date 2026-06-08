@@ -4,28 +4,35 @@ import Image from "next/image";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { getCourseBySlug, getUniversities } from "@/lib/db/queries";
+import { getCourseBySlug } from "@/lib/db/queries";
+import JsonLd from "@/components/JsonLd";
+import FaqAccordion from "@/components/FaqAccordion";
+import {
+  courseLd,
+  breadcrumbLd,
+  faqLd,
+  buildCourseFaq,
+} from "@/lib/seo/jsonld";
+import { absoluteUrl } from "@/lib/seo/site";
 
 export const revalidate = 3600;
-
-export async function generateStaticParams() {
-  const unis = await getUniversities();
-  const params: { slug: string; courseSlug: string }[] = [];
-  // We just return university slugs here; course slugs fetched per-request
-  // For a full pre-render you'd fetch courses too, but this keeps it simple
-  return params;
-}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string; courseSlug: string }> }): Promise<Metadata> {
   const { slug, courseSlug } = await params;
   const data = await getCourseBySlug(slug, courseSlug);
   if (!data) return {};
+  const canonical = `/universities/${slug}/${courseSlug}`;
+  const feeText = data.feeStructure?.totalFee
+    ? `₹${Number(data.feeStructure.totalFee).toLocaleString("en-IN")}`
+    : "available on request";
   return {
-    title: `${data.name} — ${data.university.name} | Fees, Eligibility | Vidyavasal`,
-    description: `${data.name} from ${data.university.name}: fee structure ₹${data.feeStructure?.totalFee ? Number(data.feeStructure.totalFee).toLocaleString("en-IN") : "—"}, eligibility, duration, and online admission through Vidyavasal.`,
+    title: `${data.name} — ${data.university.name} | Fees ${feeText}, Eligibility`,
+    description: `${data.name} from ${data.university.name}: total fee ${feeText}, ${data.deliveryMode ?? "distance/online"} mode, eligibility, duration and admission through Vidyavasal.`,
+    alternates: { canonical },
     openGraph: {
       title: `${data.name} — ${data.university.name} | Vidyavasal`,
-      description: data.description ?? `Get details about ${data.name} at ${data.university.name}.`,
+      description: data.description ?? `Fees, eligibility & admission for ${data.name} at ${data.university.name}.`,
+      url: absoluteUrl(canonical),
       images: data.bannerImage ? [{ url: data.bannerImage }] : [],
     },
   };
@@ -45,28 +52,37 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
     { label: "Yearly Fee", value: fee?.yearlyFee },
   ].filter((r) => r.value && Number(r.value) > 0);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Course",
+  const courseForLd = {
     name: data.name,
-    description: data.description ?? `${data.name} offered by ${data.university.name}`,
-    provider: {
-      "@type": "EducationalOrganization",
-      name: data.university.name,
-      url: `https://iode.in/universities/${slug}`,
-    },
-    timeRequired: data.durationYears ? `P${data.durationYears}Y` : undefined,
-    educationalLevel: data.courseType === "PG" ? "Graduate" : "Undergraduate",
-    offers: fee?.totalFee ? {
-      "@type": "Offer",
-      price: Number(fee.totalFee),
-      priceCurrency: "INR",
-    } : undefined,
+    slug: data.slug,
+    description: data.description,
+    content: data.content,
+    courseType: data.courseType,
+    deliveryMode: data.deliveryMode,
+    durationYears: data.durationYears,
+    isOnline: data.isOnline,
+    isDistance: data.isDistance,
+    eligibility: data.eligibility,
+    bannerImage: data.bannerImage,
+    fee,
+    university: { name: data.university.name, slug: data.university.slug },
   };
+  const faqItems = buildCourseFaq(courseForLd);
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd
+        data={[
+          courseLd(courseForLd),
+          faqLd(faqItems),
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "Universities", path: "/universities" },
+            { name: data.university.name, path: `/universities/${slug}` },
+            { name: data.name, path: `/universities/${slug}/${courseSlug}` },
+          ]),
+        ]}
+      />
 
       {/* Breadcrumb */}
       <div className="max-w-6xl mx-auto px-4 pt-6 pb-3">
@@ -147,6 +163,9 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
                 Detailed course content coming soon.
               </div>
             )}
+
+            {/* FAQ — mirrors the FAQPage JSON-LD for rich results & AI citation */}
+            <FaqAccordion items={faqItems} />
           </div>
 
           {/* Sidebar */}

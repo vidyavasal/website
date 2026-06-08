@@ -1,46 +1,61 @@
 import type { MetadataRoute } from "next";
-import { getUniversityBySlug, getUniversities } from "@/lib/db/queries";
+import { getUniversities, getCourses } from "@/lib/db/queries";
+import { SITE_URL, IS_INDEXABLE, BLOG_POSTS } from "@/lib/seo/site";
 
-const BASE_URL = "https://iode.in";
+// Re-generate the sitemap periodically rather than per-request.
+export const revalidate = 3600; // 1 hour
+
+const url = (path: string) => `${SITE_URL}${path}`;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const universities = await getUniversities();
+  // Never advertise URLs from a non-production (staging) deployment.
+  if (!IS_INDEXABLE) return [];
 
-  const staticPages: MetadataRoute.Sitemap = [
-    { url: BASE_URL, lastModified: new Date(), priority: 1.0, changeFrequency: "weekly" },
-    { url: `${BASE_URL}/universities`, lastModified: new Date(), priority: 0.9, changeFrequency: "daily" },
-    { url: `${BASE_URL}/courses`, lastModified: new Date(), priority: 0.9, changeFrequency: "daily" },
-    { url: `${BASE_URL}/about`, lastModified: new Date(), priority: 0.7 },
-    { url: `${BASE_URL}/contact`, lastModified: new Date(), priority: 0.7 },
-    { url: `${BASE_URL}/admissions`, lastModified: new Date(), priority: 0.7 },
+  const now = new Date();
+
+  const staticRoutes: MetadataRoute.Sitemap = [
+    { url: url("/"), lastModified: now, changeFrequency: "daily", priority: 1 },
+    { url: url("/universities"), lastModified: now, changeFrequency: "daily", priority: 0.9 },
+    { url: url("/courses"), lastModified: now, changeFrequency: "daily", priority: 0.9 },
+    { url: url("/admissions"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: url("/montessori"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: url("/about"), lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: url("/contact"), lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: url("/blog"), lastModified: now, changeFrequency: "weekly", priority: 0.6 },
+    { url: url("/privacy-policy"), lastModified: now, changeFrequency: "yearly", priority: 0.2 },
   ];
 
-  const universityPages: MetadataRoute.Sitemap = universities
+  const [universities, courses] = await Promise.all([
+    getUniversities(),
+    getCourses(),
+  ]);
+
+  const universityRoutes: MetadataRoute.Sitemap = universities
     .filter((u) => u.slug)
     .map((u) => ({
-      url: `${BASE_URL}/universities/${u.slug}`,
-      lastModified: u.updatedAt ?? new Date(),
-      priority: 0.9,
-      changeFrequency: "weekly" as const,
+      url: url(`/universities/${u.slug}`),
+      lastModified: u.updatedAt ?? now,
+      changeFrequency: "weekly",
+      priority: 0.8,
     }));
 
-  // Course pages
-  const coursePages: MetadataRoute.Sitemap = [];
-  for (const uni of universities.filter((u) => u.slug)) {
-    const uniData = await getUniversityBySlug(uni.slug!);
-    if (!uniData) continue;
-    for (const course of uniData.courses) {
-      if (course.slug) {
-        coursePages.push({
-          url: `${BASE_URL}/universities/${uni.slug}/${course.slug}`,
-          lastModified: new Date(),
-          priority: 0.8,
-          changeFrequency: "monthly",
-        });
-        
-      }
-    }
-  }
+  // Canonical course URLs live under the university (the page with full content
+  // + fee structure + JSON-LD), not the thin /courses/[course-name] route.
+  const courseRoutes: MetadataRoute.Sitemap = courses
+    .filter((c) => c.slug && c.universitySlug)
+    .map((c) => ({
+      url: url(`/universities/${c.universitySlug}/${c.slug}`),
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    }));
 
-  return [...staticPages, ...universityPages, ...coursePages];
+  const blogRoutes: MetadataRoute.Sitemap = BLOG_POSTS.map((p) => ({
+    url: url(`/blog/${p.slug}`),
+    lastModified: new Date(p.updatedAt),
+    changeFrequency: "monthly",
+    priority: 0.4,
+  }));
+
+  return [...staticRoutes, ...universityRoutes, ...courseRoutes, ...blogRoutes];
 }

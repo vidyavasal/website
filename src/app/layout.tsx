@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SiteShell from "@/components/SiteShell";
+import { SITE_URL, IS_INDEXABLE } from "@/lib/seo/site";
+import { organizationLd, webSiteLd } from "@/lib/seo/jsonld";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -19,10 +21,12 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     template: "%s | Vidyavasal - University Admissions & Distance Education",
     default: "Vidyavasal - University Admissions & Distance Education | Kerala's Leading Ed-Tech",
   },
+  alternates: { canonical: "/" },
   description: "Vidyavasal helps students get admitted to top universities across India. Expert guidance for distance education, +1, +2, UG, PG, MBA admissions and courses. Based in Kerala.",
   keywords: ["university admissions", "distance education", "MBA Kerala", "UG PG admissions", "+1 +2 Kerala", "IGNOU admission", "online degree India", "Vidyavasal"],
   icons: {
@@ -47,38 +51,24 @@ export const metadata: Metadata = {
     description: "Expert guidance for university admissions and distance education across India.",
     images: ["/logo.svg"],
   },
+  // Driven by env so only the production domain is indexable; staging is noindex.
   robots: {
-    index: true,
-    follow: true,
+    index: IS_INDEXABLE,
+    follow: IS_INDEXABLE,
+    googleBot: {
+      index: IS_INDEXABLE,
+      follow: IS_INDEXABLE,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
+  verification: process.env.GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+    : undefined,
 };
 
-const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  "name": "Vidyavasal",
-  "alternateName": "Vidyavasal",
-  "url": "https://iodeedu.in",
-  "logo": "https://iodeedu.in/logo.svg",
-  "description": "Vidyavasal provides expert university admissions guidance, distance education programs, and courses across Kerala and India.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressRegion": "Kerala",
-    "addressCountry": "IN"
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+91-00000-00000",
-    "contactType": "admissions",
-    "areaServed": "IN",
-    "availableLanguage": ["English", "Malayalam"]
-  },
-  "sameAs": [
-    "https://www.facebook.com/iodeedu",
-    "https://www.instagram.com/iodeedu",
-    "https://www.linkedin.com/company/iodeedu"
-  ]
-};
+const siteJsonLd = [organizationLd(), webSiteLd()];
 
 export default function RootLayout({
   children,
@@ -88,10 +78,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable} h-full antialiased scroll-smooth`}>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
+        {siteJsonLd.map((schema, i) => (
+          <script
+            key={i}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          />
+        ))}
       </head>
       <body className="min-h-full flex flex-col font-sans bg-white text-[#1D1D1F]">
         <SiteShell

@@ -1,19 +1,18 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { SITE_URL } from "@/lib/seo/site";
 
 export const metadata: Metadata = {
   title: "University Admissions",
   description: "Get admitted to top universities across India with Vidyavasal's expert admission guidance. UG, PG, MBA, Diploma programs from 25+ UGC-recognized universities.",
+  alternates: { canonical: "/admissions" },
 };
 
 const admissionsJsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "University Admissions Guidance",
-  "provider": {
-    "@type": "EducationalOrganization",
-    "name": "Vidyavasal"
-  },
+  "provider": { "@id": `${SITE_URL}/#organization` },
   "description": "Expert guidance for UG, PG, MBA, and Diploma admissions to top Indian universities",
   "areaServed": "IN",
   "serviceType": "Education Consulting"

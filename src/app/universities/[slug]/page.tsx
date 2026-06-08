@@ -7,6 +7,9 @@ import remarkGfm from "remark-gfm";
 import { MapPin, Phone } from "lucide-react";
 import { getUniversityBySlug, getUniversities } from "@/lib/db/queries";
 import type { UniversityHighlights } from "@/components/admin/HighlightsEditor";
+import JsonLd from "@/components/JsonLd";
+import { universityLd, breadcrumbLd } from "@/lib/seo/jsonld";
+import { absoluteUrl } from "@/lib/seo/site";
 
 const PLACEHOLDER = "https://placehold.co/1200x400/e8f0fe/1a56db?text=University";
 
@@ -21,12 +24,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const uni = await getUniversityBySlug(slug);
   if (!uni) return {};
+  const canonical = `/universities/${slug}`;
   return {
-    title: `${uni.name} — Online Courses, Fees & Admission | Vidyavasal`,
+    title: `${uni.name} — Online Courses, Fees & Admission`,
     description: `Explore ${uni.name} online and distance education programs. Get course details, fee structure, eligibility and apply through Vidyavasal.`,
+    alternates: { canonical },
     openGraph: {
       title: `${uni.name} — Online Education | Vidyavasal`,
       description: `Explore courses and fees at ${uni.name}.`,
+      url: absoluteUrl(canonical),
       images: uni.bannerImage ? [{ url: uni.bannerImage }] : [],
     },
   };
@@ -46,26 +52,29 @@ export default async function UniversityPage({ params }: { params: Promise<{ slu
     { label: "Accreditation", value: highlights.accreditation },
   ].filter((h) => h.value);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    name: uni.name,
-    url: uni.website ?? `https://iode.in/universities/${uni.slug}`,
-    address: { "@type": "PostalAddress", addressRegion: uni.state ?? "", addressCountry: "IN" },
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: `${uni.name} Courses`,
-      itemListElement: uni.courses.map((c, i) => ({
-        "@type": "ListItem",
-        position: i + 1,
-        item: { "@type": "Course", name: c.name, provider: { "@type": "EducationalOrganization", name: uni.name } },
-      })),
-    },
-  };
-
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd
+        data={[
+          universityLd({
+            name: uni.name,
+            slug: uni.slug,
+            description: uni.content,
+            logoUrl: uni.logoUrl,
+            website: uni.website,
+            city: uni.city,
+            state: uni.state,
+            universityType: uni.universityType,
+            highlights: uni.highlights,
+            courses: uni.courses.map((c) => ({ name: c.name, slug: c.slug })),
+          }),
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "Universities", path: "/universities" },
+            { name: uni.name, path: `/universities/${slug}` },
+          ]),
+        ]}
+      />
 
       {/* Breadcrumb */}
       <div className="max-w-6xl mx-auto px-4 pt-6 pb-2">
