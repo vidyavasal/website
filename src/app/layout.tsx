@@ -11,6 +11,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import PageTracker from "@/components/PageTracker";
 import CookieConsent from "@/components/CookieConsent";
+import LeadFormFab from "@/components/LeadFormFab";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -112,6 +113,7 @@ export default function RootLayout({
           {children}
         </SiteShell>
         <PageTracker />
+        <LeadFormFab />
         <CookieConsent />
         <Analytics />
         <SpeedInsights />
