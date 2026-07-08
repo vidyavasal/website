@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+<<<<<<< HEAD
 import { ScrollReveal } from "@/components/ScrollReveal";
 import {
   Phone,
@@ -12,6 +13,9 @@ import {
   Lock,
 } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
+=======
+import { submitContactForm } from "@/lib/actions/leads";
+>>>>>>> feat/university-course-experience
 
 export const metadata: Metadata = {
   title: "Contact Vidyavasal — Free University Admission Consultation",
@@ -69,7 +73,7 @@ export default function ContactPage() {
   return (
     <div>
       {/* ══════════════════════ HERO ══════════════════════ */}
-      <section className="border-b border-[var(--line)] bg-[var(--surface-2)] py-12 md:py-16">
+      <section className="border-b border-[var(--line)] bg-[#F5F5F7] py-12 md:py-16">
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl text-center">
           <ScrollReveal>
             <span className="eyebrow mb-4 inline-flex">
@@ -102,7 +106,7 @@ export default function ContactPage() {
       </section>
 
       {/* ══════════════════════ CONTACT METHODS ══════════════════════ */}
-      <section className="py-8 bg-white border-b border-[#E5E5EA]">
+      <section className="py-8 bg-[#F5F5F7] border-b border-[#E5E5EA]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {contactMethods.map((m, i) => (
@@ -131,7 +135,7 @@ export default function ContactPage() {
       </section>
 
       {/* ══════════════════════ MAIN CONTENT ══════════════════════ */}
-      <section className="py-14 md:py-20 bg-white">
+      <section className="py-14 md:py-20 bg-[#F5F5F7]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
 
@@ -252,18 +256,56 @@ export default function ContactPage() {
               </ScrollReveal>
             </div>
 
+<<<<<<< HEAD
             {/* ── Right: Contact Form ── */}
             <div className="lg:col-span-3">
               <ScrollReveal direction="right">
                 <ContactForm />
               </ScrollReveal>
+=======
+            {/* Contact Form */}
+            <div className="bg-white rounded-2xl p-8 border border-[#E5E5EA] shadow-sm">
+              <h2 className="text-2xl font-bold mb-6 text-[#1D1D1F]">Send us a Message</h2>
+              <form className="space-y-5" action={submitContactForm}>
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-[#1D1D1F] mb-1.5">Full Name</label>
+                  <input type="text" id="name" name="name" required className="w-full px-4 py-3 rounded-xl border border-[#E5E5EA] bg-white text-[#1D1D1F] focus:ring-2 focus:ring-[#007AFF]/15 focus:border-[#007AFF] outline-none transition-all placeholder:text-[#AEAEB2]" placeholder="John Doe" />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-[#1D1D1F] mb-1.5">Phone Number (WhatsApp)</label>
+                  <input type="tel" id="phone" name="phone" required className="w-full px-4 py-3 rounded-xl border border-[#E5E5EA] bg-white text-[#1D1D1F] focus:ring-2 focus:ring-[#007AFF]/15 focus:border-[#007AFF] outline-none transition-all placeholder:text-[#AEAEB2]" placeholder="+91 XXXXX XXXXX" />
+                </div>
+
+                <div>
+                  <label htmlFor="course" className="block text-sm font-medium text-[#1D1D1F] mb-1.5">Interested Course</label>
+                  <select id="course" name="course" className="w-full px-4 py-3 rounded-xl border border-[#E5E5EA] bg-white text-[#1D1D1F] focus:ring-2 focus:ring-[#007AFF]/15 focus:border-[#007AFF] outline-none transition-all">
+                    <option value="">Select a program...</option>
+                    <option value="online-degree">Online University Degree (MBA, BBA, BCA…)</option>
+                    <option value="iits">IITS Distance Education</option>
+                    <option value="eduthalim">Eduthalim Degree/10th/12th</option>
+                    <option value="montessori">Montessori Counseling</option>
+                    <option value="other">Other / Not Sure</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-[#1D1D1F] mb-1.5">Message</label>
+                  <textarea id="message" name="message" rows={4} className="w-full px-4 py-3 rounded-xl border border-[#E5E5EA] bg-white text-[#1D1D1F] focus:ring-2 focus:ring-[#007AFF]/15 focus:border-[#007AFF] outline-none transition-all resize-none placeholder:text-[#AEAEB2]" placeholder="How can we help you?"></textarea>
+                </div>
+
+                <button type="submit" className="w-full bg-[#007AFF] text-white font-semibold py-4 rounded-xl hover:bg-[#0066D6] transition-colors shadow-md shadow-[#007AFF]/20 btn-press">
+                  Submit Enquiry
+                </button>
+              </form>
+>>>>>>> feat/university-course-experience
             </div>
           </div>
         </div>
       </section>
 
       {/* ══════════════════════ WHY CONTACT US ══════════════════════ */}
-      <section className="section-y bg-[var(--surface-2)]">
+      <section className="section-y bg-[#F5F5F7]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
           <ScrollReveal className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold text-[#1D1D1F]">
