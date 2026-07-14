@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import { leads } from "@/lib/db/schema";
+import { mirrorLeadToTracker } from "@/lib/tracker-lead";
 import {
   UTM_COOKIE,
   FEE_UNLOCK_COOKIE,
@@ -57,6 +58,18 @@ async function insertLead(input: LeadInput): Promise<LeadResult> {
     utmMedium: utm.utmMedium ?? null,
     utmCampaign: utm.utmCampaign ?? null,
   });
+
+  // Also surface the lead in the tracker portal (panel → Leads).
+  await mirrorLeadToTracker({
+    name,
+    phone,
+    email: input.email,
+    universityId: input.universityId,
+    courseId: input.courseId,
+    source: input.source,
+    notes: input.message,
+  });
+
   return { ok: true };
 }
 
