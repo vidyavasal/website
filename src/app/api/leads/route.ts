@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { leads } from "@/lib/db/schema";
-import { trackerLeads } from "@/lib/db/tracker";
+import { mirrorLeadToTracker } from "@/lib/tracker-lead";
 
 export const runtime = "nodejs";
 
@@ -64,15 +64,15 @@ export async function POST(req: NextRequest) {
       .returning({ id: leads.id });
 
     // Mirror into the tracker portal so it shows up in the lead panel.
-    await db.insert(trackerLeads).values({
-      name: name || "Unknown",
+    // Never throws — a mirror failure must not 500 an already-saved lead.
+    await mirrorLeadToTracker({
+      name,
       phone,
-      email: body.email?.trim() || null,
+      email: body.email,
       universityId: isUuid(body.universityId) ? body.universityId : null,
       courseId: isUuid(body.courseId) ? body.courseId : null,
-      notes: body.message?.trim() || null,
-      source: source.length <= 60 ? source : "web_form",
-      status: "new",
+      source,
+      notes: body.message,
     });
 
     return NextResponse.json({ ok: true, id: lead.id });
